@@ -47,7 +47,7 @@ public class Monom implements function{
 		return ans;
 	} 
 	public boolean isZero() {return this.get_coefficient() == 0;}
-	// ****** add your code below *********
+	// ** add your code below ***
 
 
 	/**
@@ -270,7 +270,7 @@ public class Monom implements function{
 	}
 
 
-	//****** Private Methods and Data *******
+	//** Private Methods and Data ***
 
 
 	private void set_coefficient(double a){
