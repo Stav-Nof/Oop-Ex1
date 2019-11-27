@@ -2,8 +2,7 @@ package Ex1;
 
 import java.util.Comparator;
 import java.util.StringTokenizer;
-
-import myMath.function;
+import Ex1.function;
 
 
 /**
@@ -216,6 +215,13 @@ public class Monom implements function{
 	}
 
 
+	@Override
+	public Ex1.function copy() {
+		Monom ans = new Monom(this.get_coefficient(), this.get_power());
+		return ans;
+	}
+	
+	
 	// you may (always) add other methods.
 
 
@@ -277,6 +283,9 @@ public class Monom implements function{
 	private static Monom getNewZeroMonom() {return new Monom(ZERO);}
 	private double _coefficient; 
 	private int _power;
-
-
+	@Override
+	public Ex1.function initFromString(String s) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
