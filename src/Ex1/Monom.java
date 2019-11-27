@@ -204,6 +204,9 @@ public class Monom implements function{
 		}
 		else if(this.get_coefficient() == 1) {
 			ans = "x^"+this.get_power();
+			if(this.get_power() == 1) {
+				ans = "x";
+			}
 		}
 		else if(this.get_power() == 1 ) {
 			ans = this.get_coefficient()+"x";
