@@ -10,10 +10,10 @@ class PolynomTest {
 	void ConstructorAndtoString() {
 		
 		
-		assertEquals(new Polynom("x^2+x"), "x^2+x");
+		assertEquals(new Polynom("1x^2+x^1"), "x^2+x^1");
 		assertEquals(new Polynom("2x^2+5x"), "2x^2+5x");
 		assertEquals(new Polynom("-3x^3+7x"), "-3.0x^2+7x");
-		assertEquals(new Polynom("x^2+x"), "x^2+x");
+		assertEquals(new Polynom("x^2+x"), "x^2+x^1");
 		assertEquals(new Polynom("-x^4+5x^4"), "-1.0x^4+5x^4");
 		
 		
