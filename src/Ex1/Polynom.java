@@ -3,7 +3,8 @@ package Ex1;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import Ex1.Polynom_able;
+
+import Ex1.Monom;
 /**
  * This class represents a Polynom with add, multiply functionality, it also should support the following:
  * 1. Riemann's Integral: https://en.wikipedia.org/wiki/Riemann_integral
@@ -31,19 +32,26 @@ public class Polynom implements Polynom_able{
 	 * @param s: is a string represents a Polynom
 	 */
 	public Polynom(String s) {
+		if (this.monoms == null) {
+			this.monoms = new LinkedList<Monom>();
+		}
 		String monom = "";
 		for (int i = 0; i < s.length(); i++) {
 			if (s.charAt(i) != '+' && s.charAt(i) != '-' ) {
 				monom = monom + s.charAt(i);
 			}
 			if (s.charAt(i) == '+') {
-				Monom temp = new Monom (monom);
-				monoms.add(temp);
+				if (!monom.equals("")) {
+					Monom temp = new Monom (monom);
+					monoms.add(temp);
+				}
 				monom = "";
 			}
 			if (s.charAt(i) == '-') {
-				Monom temp = new Monom (monom);
-				monoms.add(temp);
+				if (!monom.equals("")) {
+					Monom temp = new Monom (monom);
+					monoms.add(temp);
+				}
 				monom = "-";	
 			}
 		}
@@ -220,6 +228,7 @@ public class Polynom implements Polynom_able{
 	 * Implements the equals function of the interface "Polynom_able".
 	 * This functions is checking if two polynoms are equal or not and returns a boolean statement.
 	 */
+	@Override
 	public boolean equals(Polynom_able p1) {
 		Iterator<Monom> thisIterator = this.iteretor();
 		Iterator<Monom> p1Iterator = p1.iteretor();
@@ -384,13 +393,6 @@ public class Polynom implements Polynom_able{
 				ans = ans + "+" + temp;
 			}
 		}
-		return ans;
-	}
-
-
-	@Override
-	public function initFromString(String s) {
-		Polynom ans = new Polynom(s);
 		return ans;
 	}
 

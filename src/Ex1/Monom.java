@@ -2,7 +2,6 @@ package Ex1;
 
 import java.util.Comparator;
 import java.util.StringTokenizer;
-import Ex1.function;
 
 
 /**
@@ -47,7 +46,7 @@ public class Monom implements function{
 		return ans;
 	} 
 	public boolean isZero() {return this.get_coefficient() == 0;}
-	// ** add your code below ***
+	// ****** add your code below *********
 
 
 	/**
@@ -204,9 +203,6 @@ public class Monom implements function{
 		}
 		else if(this.get_coefficient() == 1) {
 			ans = "x^"+this.get_power();
-			if(this.get_power() == 1) {
-				ans = "x";
-			}
 		}
 		else if(this.get_power() == 1 ) {
 			ans = this.get_coefficient()+"x";
@@ -218,20 +214,6 @@ public class Monom implements function{
 	}
 
 
-	@Override
-	public Ex1.function copy() {
-		Monom ans = new Monom(this.get_coefficient(), this.get_power());
-		return ans;
-	}
-	
-	
-	@Override
-	public Ex1.function initFromString(String s) {
-		Monom ans = new Monom(s);
-		return ans;
-	}
-	
-	
 	// you may (always) add other methods.
 
 
@@ -280,7 +262,7 @@ public class Monom implements function{
 	}
 
 
-	//** Private Methods and Data ***
+	//****** Private Methods and Data *******
 
 
 	private void set_coefficient(double a){
@@ -293,5 +275,6 @@ public class Monom implements function{
 	private static Monom getNewZeroMonom() {return new Monom(ZERO);}
 	private double _coefficient; 
 	private int _power;
+
 
 }
