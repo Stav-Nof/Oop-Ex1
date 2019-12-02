@@ -342,9 +342,10 @@ public class Polynom implements Polynom_able{
 	@Override
 	public double area(double x0, double x1, double eps) {
 		double ans = 0;
-		while(x0 <= x1) {
+		while(x0 < x1 && f(x0) > 0) {
 			double y = this.f(x0);
 			double temp = eps * y;
+			temp = Math.abs(temp);
 			ans = ans + temp;
 			x0 = x0 + eps;
 		}

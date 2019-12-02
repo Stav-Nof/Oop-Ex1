@@ -1,5 +1,6 @@
 package Ex1;
 
+import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.StringTokenizer;
 
@@ -107,6 +108,8 @@ public class Monom implements function{
 		if (coefficient.isEmpty()){ // check the case of 'x','x^2',...
 			coefficient = "1";
 		}
+		DecimalFormat df = new DecimalFormat("#.##");
+		coefficient = df.format(Double.parseDouble(coefficient));
 		if (coefficient.contains(".")) {
 			int endIndex = coefficient.indexOf(".") + 3;
 			if (endIndex < coefficient.length())
@@ -128,7 +131,6 @@ public class Monom implements function{
 				throw new NumberFormatException("the string includes a char that is not a number");
 			}
 		}
-
 		String power = "";
 		if (tokenizer.hasMoreTokens()) {
 			power = tokenizer.nextToken("xX^");
@@ -159,6 +161,7 @@ public class Monom implements function{
 		set_coefficient(a);
 		set_power(b);
 	}
+
 
 
 	/**

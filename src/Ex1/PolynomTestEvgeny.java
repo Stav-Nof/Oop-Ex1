@@ -4,6 +4,7 @@ public class PolynomTestEvgeny {
 	static int fails = 0;
 	public static void main(String[] args) {
 		try {test1();}catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("test1 exception");
 			fails = fails + 3;
 		}
@@ -69,8 +70,6 @@ public class PolynomTestEvgeny {
 			Monom m = new Monom(monoms2[i]);
 			p2.add(m);
 		}
-		//System.out.println("p1: "+p1);
-		//System.out.println("p2: "+p2);
 		if (!p1.equals(new Polynom(p1.toString()))) {
 			fails++;
 			System.out.println("self check from string failed");
