@@ -193,9 +193,9 @@ public class PolynomTestEvgeny {
 			Monom temp = new Monom(polynoms[2][i]);
 			p3.add(temp);
 		}
-
 		if (p1.equals(p2)) {
 			fails++;
+			
 			System.out.println("fail equals");
 		}
 		
