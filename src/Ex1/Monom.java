@@ -217,6 +217,18 @@ public class Monom implements function{
 	}
 
 
+	@Override
+	public function initFromString(String s) {
+		Monom ans = new Monom(s);
+		return ans;
+	}
+	
+	
+	@Override
+	public function copy() {
+		Monom ans = new Monom(this.toString());
+		return ans;
+	}
 	// you may (always) add other methods.
 
 
@@ -280,6 +292,4 @@ public class Monom implements function{
 	private static Monom getNewZeroMonom() {return new Monom(ZERO);}
 	private double _coefficient; 
 	private int _power;
-
-
 }

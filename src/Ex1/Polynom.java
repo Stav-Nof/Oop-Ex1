@@ -227,36 +227,6 @@ public class Polynom implements Polynom_able{
 
 
 	/**
-	 * Implements the equals function of the interface "Polynom_able".
-	 * This functions is checking if two polynoms are equal or not and returns a boolean statement.
-	 */
-	@Override
-	public boolean equals(Polynom_able p1) {
-		Iterator<Monom> thisIterator = this.iteretor();
-		Iterator<Monom> p1Iterator = p1.iteretor();
-		Monom thisTemp;
-		Monom p1Temp;
-		do {
-			if (!thisIterator.hasNext() && !p1Iterator.hasNext()) {
-				return true;
-			}
-			if(thisIterator.hasNext() && !p1Iterator.hasNext()) {
-				return false;
-			}
-			if(!thisIterator.hasNext() && p1Iterator.hasNext()) {
-				return false;
-			}
-			thisTemp = thisIterator.next();
-			p1Temp = p1Iterator.next();
-			if(!thisTemp.equals(p1Temp)) {
-				return false;
-			}
-		} while(thisIterator.hasNext() || p1Iterator.hasNext());
-		return true;
-	}
-
-
-	/**
 	 * Implements the isZero function of the interface "Polynom_able".
 	 * This function is checking wether the Polynom is a Zero  Polynom.
 	 */
@@ -400,4 +370,9 @@ public class Polynom implements Polynom_able{
 	}
 
 
+	@Override
+	public function initFromString(String s) {
+		Polynom ans = new Polynom(s);
+		return ans;
+	}
 }
