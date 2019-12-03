@@ -1,10 +1,32 @@
 package Ex1;
 
 public class ComplexFunction implements complex_function{
+	function left;
+	function right;
+	Operation op;
 
 	@Override
 	public double f(double x) {
-		// TODO Auto-generated method stub
+		double l = left.f(x);
+		double r = right.f(x);
+		if(op == op.Plus) {
+			return l+r;
+		}
+		if(op == op.Times) {
+			return l*r;
+		}
+		if(op == op.Divid) {
+			return l/r;
+		}
+		if(op == op.Max) {
+			return Math.max(l, r);
+		}
+		if(op == op.Min) {
+			return Math.min(l, r);
+		}
+		if(op == op.Comp) {
+			return left.f(right.f(x));
+		}
 		return 0;
 	}
 
