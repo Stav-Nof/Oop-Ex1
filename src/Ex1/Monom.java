@@ -246,13 +246,14 @@ public class Monom implements function{
 	 */
 	public void substract (Monom m) {
 		if (this.get_power()  == m.get_power()) {
-			if(this.get_coefficient() == 0) {
-				this.set_coefficient(0 - m.get_coefficient());
-				this.set_power(m.get_power());
-			}
 			this.set_coefficient(this.get_coefficient() - m.get_coefficient());	
 		}
-
+		 
+		else if (this.get_coefficient() == 0) { 
+				this.set_coefficient(0 - m.get_coefficient());
+				this.set_power(m.get_power());
+			
+		}
 	}
 
 

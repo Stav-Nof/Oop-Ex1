@@ -189,20 +189,7 @@ public class Polynom implements Polynom_able{
 					this.monoms.add(moveIn);
 					flag = true;
 				}
-				if(temp.get_power() < m1.get_power()) { //checks if the power of m1 is greater the power of the checked monom. 
-					Monom moveIn = temp;
-					int index = this.monoms.indexOf(moveIn); // get the index of the current monom
-					this.monoms.set(index, m1); 
-					Monom moveOut;
-					while (iterator.hasNext()) { //swaping monoms
-						moveOut = iterator.next();
-						index++;
-						this.monoms.set(index, moveIn);
-						moveIn = moveOut;
-					}
-					this.monoms.add(moveIn);
-					flag = false;
-				}
+				
 			}
 		}
 		else {
