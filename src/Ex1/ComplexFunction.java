@@ -5,6 +5,55 @@ public class ComplexFunction implements complex_function{
 	function right;
 	Operation op;
 
+
+	//	 banay qui recoit string 
+	//	f1 right 
+	//	f2 left
+	//	if f2 == null none
+	//	if f1 = null alors f2 rentre en right au lieu de left
+
+
+	public ComplexFunction(String s, function left, function right) {
+
+		Operation p;
+		String op = "";
+		for (int i = 0; i < s.length(); i++) {
+			op = op +s.charAt(i);
+		}
+		if (op == "plus" || op  == "P") {
+			p = Operation.Plus;
+		}
+		else if (op == "Times" || op == "mul") {
+			p = Operation.Times;
+		}
+		else if (op == "div" || op == "Divide") {
+			p = Operation.Divid;
+		}
+		else if (op == "Max" || op == "max") {
+			p = Operation.Max;
+		}
+		else if (op == "min" || op == "Min") {
+			p = Operation.Min;
+		}
+		else if (op == "comp" || op == "Comp") {
+			p = Operation.Comp;
+		}
+
+		this.left = left;
+		this.right = right; 
+
+		if (this.right == null) {
+			p = Operation.None;
+		}
+		if (this.left == null) {
+			this.right = left;
+		}
+
+
+	}
+
+
+
 	@Override
 	public double f(double x) {
 		double l = left.f(x);
@@ -79,9 +128,6 @@ public class ComplexFunction implements complex_function{
 			}
 			func2 = func2 + s.charAt(i);
 		}
-		
-		ComplexFunction ans = new ComplexFunction(operation, initFromString(func1),initFromString(func2));
-		return ans;
 	}
 
 	@Override
@@ -103,144 +149,68 @@ public class ComplexFunction implements complex_function{
 	@Override
 	public void plus(function f1) {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
-
+		this.op = Operation.Plus;
+		this.right  = f1;
 	}
+
 
 	@Override
 	public void mul(function f1) {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
-
+		this.op = Operation.Times;
+		this.right = f1;
 	}
+
 
 	@Override
 	public void div(function f1) {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
-
+		this.op = Operation.Divid;
+		this.right = f1;
 	}
+
 
 	@Override
 	public void max(function f1) {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
-
+		this.op = Operation.Max;
+		this.right = f1;
 	}
+
 
 	@Override
 	public void min(function f1) {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
-
+		this.op = Operation.Min;
+		this.right = f1;
 	}
+
 
 	@Override
 	public void comp(function f1) {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
-
+		this.op = Operation.Comp;
+		this.right = f1;
 	}
+
 
 	@Override
 	public function left() {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
-		return null;
+		return this.left;
 	}
+
 
 	@Override
 	public function right() {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
-		return null;
+		return this.right;
 	}
+
 
 	@Override
 	public Operation getOp() {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
 		return null;
 	}
 

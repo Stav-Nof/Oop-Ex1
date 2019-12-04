@@ -144,6 +144,13 @@ class MonomTest {
 			assertEquals(m7.toString() , new Monom("-3.0x^5").toString());
 			m8.substract(m7);
 			assertEquals(m8.toString() , new Monom("3.0x^5").toString());
+			one.substract(minusOne);
+			assertEquals(one.toString() , new Monom("2").toString());
+			minusone.substract(One);
+			assertEquals(minusone.toString() , new Monom("-2").toString());
+			
+			
+			
 				
 	 }
 	 
