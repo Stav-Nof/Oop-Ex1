@@ -7,26 +7,26 @@ public class ComplexFunction implements complex_function{
 
 
 	public ComplexFunction(String s, function left, function right) {
-		String op = "";
+		String operation = "";
 		for (int i = 0; i < s.length(); i++) {
-			op = op +s.charAt(i);
+			operation = operation +s.charAt(i);
 		}
-		if (op == "plus" || op  == "P") {
+		if (operation.equals("Plus") || operation.equals("plus")) {
 			this.op =  Operation.Plus;
 		}
-		else if (op == "Times" || op == "mul") {
+		else if (operation.equals("Times") || operation.equals("mul")) {
 			this.op = Operation.Times;
 		}
-		else if (op == "div" || op == "Divide") {
+		else if (operation.equals("div") || operation.equals("Divide")) {
 			this.op = Operation.Divid;
 		}
-		else if (op == "Max" || op == "max") {
+		else if (operation.equals("Max") || operation.equals("max")) {
 			this.op = Operation.Max;
 		}
-		else if (op == "min" || op == "Min") {
+		else if (operation.equals("min") || operation.equals("Min")) {
 			this.op = Operation.Min;
 		}
-		else if (op == "comp" || op == "Comp") {
+		else if (operation.equals("comp") || operation.equals("Comp")) {
 			this.op = Operation.Comp;
 		}
 		this.left = left;
