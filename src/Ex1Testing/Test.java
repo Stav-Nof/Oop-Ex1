@@ -17,9 +17,9 @@ public class Test {
 		ComplexFunction cf1 = new ComplexFunction("plus",f1,f2);
 		System.out.println(cf1.toString());
 		ComplexFunction temp = cf1;
-		ComplexFunction cf2 = (ComplexFunction) temp.initFromString("plus(mult(plus(2x^2+5x,x^2+x),2x^4+54x^5),5x^3+6x^2)");
-
+		ComplexFunction cf2 = (ComplexFunction) temp.initFromString("plus(mul(plus(2x^2+5x,x^2+x),2x^4+54x^5),5x^3+6x^2)");
 		System.out.println(cf2.toString());
+		System.out.println(cf2.f(2));
 	}
 
 }
