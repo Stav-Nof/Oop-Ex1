@@ -6,50 +6,38 @@ public class ComplexFunction implements complex_function{
 	Operation op;
 
 
-	//	 banay qui recoit string 
-	//	f1 right 
-	//	f2 left
-	//	if f2 == null none
-	//	if f1 = null alors f2 rentre en right au lieu de left
-
-
 	public ComplexFunction(String s, function left, function right) {
-
-		Operation p;
 		String op = "";
 		for (int i = 0; i < s.length(); i++) {
 			op = op +s.charAt(i);
 		}
 		if (op == "plus" || op  == "P") {
-			p = Operation.Plus;
+			this.op =  Operation.Plus;
 		}
 		else if (op == "Times" || op == "mul") {
-			p = Operation.Times;
+			this.op = Operation.Times;
 		}
 		else if (op == "div" || op == "Divide") {
-			p = Operation.Divid;
+			this.op = Operation.Divid;
 		}
 		else if (op == "Max" || op == "max") {
-			p = Operation.Max;
+			this.op = Operation.Max;
 		}
 		else if (op == "min" || op == "Min") {
-			p = Operation.Min;
+			this.op = Operation.Min;
 		}
 		else if (op == "comp" || op == "Comp") {
-			p = Operation.Comp;
+			this.op = Operation.Comp;
 		}
-
 		this.left = left;
 		this.right = right; 
-
-		if (this.right == null) {
-			p = Operation.None;
-		}
 		if (this.left == null) {
 			this.right = left;
+			this.right = null;
 		}
-
-
+		if (this.right == null) {
+			this.op = Operation.None;
+		}
 	}
 
 
@@ -129,8 +117,8 @@ public class ComplexFunction implements complex_function{
 		ComplexFunction ans = new ComplexFunction(operation, initFromString(func1), initFromString(func2));
 		return ans;
 	}
-	
-	
+
+
 	public String toString() {
 		String ans = this.left.toString() + this.op + this.right.toString();
 		return ans;

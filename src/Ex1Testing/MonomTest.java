@@ -1,8 +1,10 @@
-package Ex1;
+package Ex1Testing;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import Ex1.Monom;
 
 class MonomTest {
 
