@@ -19,8 +19,11 @@ public class ComplexFunction implements complex_function {
 		}
 	}
 
-	
+
 	public ComplexFunction(String s) {
+		if(s.isEmpty()) {
+			return;
+		}
 		String operation = "";
 		int counter = 0;
 		int i = 0;
@@ -61,23 +64,29 @@ public class ComplexFunction implements complex_function {
 			}
 			func2 = func2 + s.charAt(i);
 		}
-		if(!(func1.charAt(0) == 'P' || func1.charAt(0) == 'p'|| func1.charAt(0) == 'T' || func1.charAt(0) == 't'|| func1.charAt(0) == 'M' || func1.charAt(0) == 'm'|| func1.charAt(0) == 'D' || func1.charAt(0) == 'd'|| func1.charAt(0) == 'C' || func1.charAt(0) == 'c' || func1.charAt(0) == 'A' || func2.charAt(0) == 'a')) {
-			this.left = new Polynom(func1);
+		if (!func1.isEmpty()) {
+			if(!(func1.charAt(0) == 'P' || func1.charAt(0) == 'p'|| func1.charAt(0) == 'T' || func1.charAt(0) == 't'|| func1.charAt(0) == 'M' || func1.charAt(0) == 'm'|| func1.charAt(0) == 'D' || func1.charAt(0) == 'd'|| func1.charAt(0) == 'C' || func1.charAt(0) == 'c' || func1.charAt(0) == 'A' || func2.charAt(0) == 'a')) {
+				this.left = new Polynom(func1);
+			}
+			else {
+				this.left = new ComplexFunction(func1);
+			}
 		}
 		else {
-			this.left = new ComplexFunction(func1);
+			this.left = null;
 		}
-		if(!(func2.charAt(0) == 'P' || func2.charAt(0) == 'p'|| func2.charAt(0) == 'T' || func2.charAt(0) == 't'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'D' || func2.charAt(0) == 'd'|| func2.charAt(0) == 'C' || func2.charAt(0) == 'c'|| func1.charAt(0) == 'A' || func2.charAt(0) == 'a')) {
-			this.right = new Polynom(func2);
+		if (!func2.isEmpty()) {
+			if(!(func2.charAt(0) == 'P' || func2.charAt(0) == 'p'|| func2.charAt(0) == 'T' || func2.charAt(0) == 't'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'D' || func2.charAt(0) == 'd'|| func2.charAt(0) == 'C' || func2.charAt(0) == 'c'|| func1.charAt(0) == 'A' || func2.charAt(0) == 'a')) {
+				this.right = new Polynom(func2);
+			}
+			else {
+				this.right = new ComplexFunction(func2);
+			}
+			this.op = StringToOperation(operation);
 		}
-		else {
-			this.right = new ComplexFunction(func2);
-		}
-		this.op = StringToOperation(operation);
-				
 	}
-	
-	
+
+
 	public static Operation StringToOperation(String s) {
 		if (s.equals("Plus") || s.equals("plus")) {
 			return  Operation.Plus;
@@ -99,8 +108,8 @@ public class ComplexFunction implements complex_function {
 		}
 		return Operation.None;
 	}
-	
-	
+
+
 	@Override
 	public double f(double x) {
 		double l = left.f(x);
@@ -125,52 +134,52 @@ public class ComplexFunction implements complex_function {
 		}
 		return 0;
 	}
-	
-	
+
+
 	@Override
 	public function initFromString(String s) {
 		ComplexFunction ans = new ComplexFunction(s);
 		return ans;
 	}
-	
-	
+
+
 	public String toString() {
-		String ans = this.left.toString() + this.op.toString() + this.right.toString();
+		String ans =  this.op.toString() + "(" + this.left.toString() + "," + this.right.toString() + ")"; 
 		return ans;
 	}
-	
-	
+
+
 	@Override
 	public function copy() {
-		// TODO Auto-generated method stub
-		return null;
+		ComplexFunction ans = new ComplexFunction(this.op.toString(),new ComplexFunction (this.left.toString()),new ComplexFunction (this.right.toString()));
+		return ans;
 	}
-	
-	
+
+
 	@Override
 	public void plus(function f1) {
 		// TODO Auto-generated method stub
 		this.op = Operation.Plus;
 		this.right  = f1;
 	}
-	
-	
+
+
 	@Override
 	public void mul(function f1) {
 		// TODO Auto-generated method stub
 		this.op = Operation.Times;
 		this.right = f1;
 	}
-	
-	
+
+
 	@Override
 	public void div(function f1) {
 		// TODO Auto-generated method stub
 		this.op = Operation.Divid;
 		this.right = f1;
 	}
-	
-	
+
+
 	@Override
 	public void max(function f1) {
 		// TODO Auto-generated method stub
