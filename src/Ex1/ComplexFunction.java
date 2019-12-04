@@ -129,6 +129,12 @@ public class ComplexFunction implements complex_function{
 		ComplexFunction ans = new ComplexFunction(operation, initFromString(func1), initFromString(func2));
 		return ans;
 	}
+	
+	
+	public String toString() {
+		String ans = this.left.toString() + this.op + this.right.toString();
+		return ans;
+	}
 
 	@Override
 	public function copy() {
