@@ -1,6 +1,7 @@
 package Ex1;
 
 public class ComplexFunction implements complex_function{
+	
 	function left;
 	function right;
 	Operation op;
@@ -9,7 +10,7 @@ public class ComplexFunction implements complex_function{
 	public ComplexFunction(String s, function left, function right) {
 		String operation = "";
 		for (int i = 0; i < s.length(); i++) {
-			operation = operation +s.charAt(i);
+			operation = operation + s.charAt(i);
 		}
 		if (operation.equals("Plus") || operation.equals("plus")) {
 			this.op =  Operation.Plus;
@@ -28,6 +29,9 @@ public class ComplexFunction implements complex_function{
 		}
 		else if (operation.equals("comp") || operation.equals("Comp")) {
 			this.op = Operation.Comp;
+		}
+		else if (operation.equals("None")) {
+			this.op = Operation.None;
 		}
 		this.left = left;
 		this.right = right; 
