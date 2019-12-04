@@ -1,7 +1,6 @@
 package Ex1;
 
-public class ComplexFunction implements complex_function{
-	
+public class ComplexFunction implements complex_function {
 	function left;
 	function right;
 	Operation op;
@@ -62,13 +61,13 @@ public class ComplexFunction implements complex_function{
 			}
 			func2 = func2 + s.charAt(i);
 		}
-		if(!(func1.charAt(0) == 'P' || func1.charAt(0) == 'p'|| func1.charAt(0) == 'T' || func1.charAt(0) == 't'|| func1.charAt(0) == 'M' || func1.charAt(0) == 'm'|| func1.charAt(0) == 'D' || func1.charAt(0) == 'd'|| func1.charAt(0) == 'M' || func1.charAt(0) == 'm'|| func1.charAt(0) == 'C' || func1.charAt(0) == 'c')) {
+		if(!(func1.charAt(0) == 'P' || func1.charAt(0) == 'p'|| func1.charAt(0) == 'T' || func1.charAt(0) == 't'|| func1.charAt(0) == 'M' || func1.charAt(0) == 'm'|| func1.charAt(0) == 'D' || func1.charAt(0) == 'd'|| func1.charAt(0) == 'C' || func1.charAt(0) == 'c' || func1.charAt(0) == 'A' || func2.charAt(0) == 'a')) {
 			this.left = new Polynom(func1);
 		}
 		else {
 			this.left = new ComplexFunction(func1);
 		}
-		if(!(func2.charAt(0) == 'P' || func2.charAt(0) == 'p'|| func2.charAt(0) == 'T' || func2.charAt(0) == 't'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'D' || func2.charAt(0) == 'd'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'C' || func2.charAt(0) == 'c')) {
+		if(!(func2.charAt(0) == 'P' || func2.charAt(0) == 'p'|| func2.charAt(0) == 'T' || func2.charAt(0) == 't'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'D' || func2.charAt(0) == 'd'|| func2.charAt(0) == 'C' || func2.charAt(0) == 'c'|| func1.charAt(0) == 'A' || func2.charAt(0) == 'a')) {
 			this.right = new Polynom(func2);
 		}
 		else {
@@ -126,59 +125,52 @@ public class ComplexFunction implements complex_function{
 		}
 		return 0;
 	}
-
+	
+	
 	@Override
 	public function initFromString(String s) {
 		ComplexFunction ans = new ComplexFunction(s);
 		return ans;
 	}
-
-
+	
+	
 	public String toString() {
 		String ans = this.left.toString() + this.op.toString() + this.right.toString();
 		return ans;
 	}
-
+	
+	
 	@Override
 	public function copy() {
 		// TODO Auto-generated method stub
-
-
-
-
-
-
-
-
-
-
 		return null;
 	}
-
+	
+	
 	@Override
 	public void plus(function f1) {
 		// TODO Auto-generated method stub
 		this.op = Operation.Plus;
 		this.right  = f1;
 	}
-
-
+	
+	
 	@Override
 	public void mul(function f1) {
 		// TODO Auto-generated method stub
 		this.op = Operation.Times;
 		this.right = f1;
 	}
-
-
+	
+	
 	@Override
 	public void div(function f1) {
 		// TODO Auto-generated method stub
 		this.op = Operation.Divid;
 		this.right = f1;
 	}
-
-
+	
+	
 	@Override
 	public void max(function f1) {
 		// TODO Auto-generated method stub
@@ -222,5 +214,4 @@ public class ComplexFunction implements complex_function{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
