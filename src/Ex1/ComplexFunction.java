@@ -158,7 +158,8 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public void plus(function f1) {
-		// TODO Auto-generated method stub
+		function temp = this.copy();
+		this.left = temp;
 		this.op = Operation.Plus;
 		this.right  = f1;
 	}
@@ -166,61 +167,63 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public void mul(function f1) {
-		// TODO Auto-generated method stub
+		function temp = this.copy();
+		this.left = temp;
 		this.op = Operation.Times;
-		this.right = f1;
+		this.right  = f1;
 	}
 
 
 	@Override
 	public void div(function f1) {
-		// TODO Auto-generated method stub
+		function temp = this.copy();
+		this.left = temp;
 		this.op = Operation.Divid;
-		this.right = f1;
+		this.right  = f1;
 	}
 
 
 	@Override
 	public void max(function f1) {
-		// TODO Auto-generated method stub
+		function temp = this.copy();
+		this.left = temp;
 		this.op = Operation.Max;
-		this.right = f1;
+		this.right  = f1;
 	}
 
 
 	@Override
 	public void min(function f1) {
-		// TODO Auto-generated method stub
+		function temp = this.copy();
+		this.left = temp;
 		this.op = Operation.Min;
-		this.right = f1;
+		this.right  = f1;
 	}
 
 
 	@Override
 	public void comp(function f1) {
-		// TODO Auto-generated method stub
+		function temp = this.copy();
+		this.left = temp;
 		this.op = Operation.Comp;
-		this.right = f1;
+		this.right  = f1;
 	}
 
 
 	@Override
 	public function left() {
-		// TODO Auto-generated method stub
 		return this.left;
 	}
 
 
 	@Override
 	public function right() {
-		// TODO Auto-generated method stub
 		return this.right;
 	}
 
 
 	@Override
 	public Operation getOp() {
-		// TODO Auto-generated method stub
-		return null;
+		return op;
 	}
 }

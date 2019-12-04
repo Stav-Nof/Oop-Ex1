@@ -15,7 +15,7 @@ import Ex1.Monom;
  *
  */
 public class Polynom implements Polynom_able{
-	LinkedList<Monom> monoms;
+	public LinkedList<Monom> monoms;
 
 
 	/**

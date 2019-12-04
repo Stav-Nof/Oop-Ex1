@@ -18,13 +18,9 @@ public class Test {
 		ComplexFunction cf2 = (ComplexFunction) cf1.copy();
 		
 		System.out.println(cf1.toString());
-		System.out.println(cf2.toString());
-//		ComplexFunction temp = cf1;
-//		ComplexFunction cf2 = (ComplexFunction) temp.initFromString("plus(mult(plus(2x^2+5x,x^2+x),2x^4+54x^5),5x^3+6x^2)");
-//
-//		System.out.println(cf2.toString());
-//		
-		
+		ComplexFunction temp = cf1;
+		ComplexFunction cf2 = (ComplexFunction) temp.initFromString("plus(mul(plus(2x^2+5x,x^2+x),2x^4+54x^5),5x^3+6x^2)");
+		System.out.println(cf2.f(2));
 	}
 
 }
