@@ -7,28 +7,7 @@ public class ComplexFunction implements complex_function{
 
 
 	public ComplexFunction(String s, function left, function right) {
-		String operation = "";
-		for (int i = 0; i < s.length(); i++) {
-			operation = operation +s.charAt(i);
-		}
-		if (operation.equals("Plus") || operation.equals("plus")) {
-			this.op =  Operation.Plus;
-		}
-		else if (operation.equals("Times") || operation.equals("mul")) {
-			this.op = Operation.Times;
-		}
-		else if (operation.equals("div") || operation.equals("Divide")) {
-			this.op = Operation.Divid;
-		}
-		else if (operation.equals("Max") || operation.equals("max")) {
-			this.op = Operation.Max;
-		}
-		else if (operation.equals("min") || operation.equals("Min")) {
-			this.op = Operation.Min;
-		}
-		else if (operation.equals("comp") || operation.equals("Comp")) {
-			this.op = Operation.Comp;
-		}
+		this.op = StringToOperation(s);
 		this.left = left;
 		this.right = right; 
 		if (this.left == null) {
@@ -40,39 +19,8 @@ public class ComplexFunction implements complex_function{
 		}
 	}
 
-
-
-	@Override
-	public double f(double x) {
-		double l = left.f(x);
-		double r = right.f(x);
-		if(op == op.Plus) {
-			return l+r;
-		}
-		if(op == op.Times) {
-			return l*r;
-		}
-		if(op == op.Divid) {
-			return l/r;
-		}
-		if(op == op.Max) {
-			return Math.max(l, r);
-		}
-		if(op == op.Min) {
-			return Math.min(l, r);
-		}
-		if(op == op.Comp) {
-			return left.f(right.f(x));
-		}
-		return 0;
-	}
-
-	@Override
-	public function initFromString(String s) {
-		if(!(s.charAt(0) == 'P') || !(s.charAt(0) == 'p')|| !(s.charAt(0) == 'T') || !(s.charAt(0) == 't')|| !(s.charAt(0) == 'M') || !(s.charAt(0) == 'm')|| !(s.charAt(0) == 'D') || !(s.charAt(0) == 'd')|| !(s.charAt(0) == 'M') || !(s.charAt(0) == 'm')|| !(s.charAt(0) == 'C') || !(s.charAt(0) == 'c')) {
-			function temp = new Polynom(s);
-			return temp;
-		}
+	
+	public ComplexFunction(String s) {
 		String operation = "";
 		int counter = 0;
 		int i = 0;
@@ -109,18 +57,84 @@ public class ComplexFunction implements complex_function{
 				counter--;
 			}
 			if(s.charAt(i) == ')' && counter == 0) {
-				i++;
 				break;
 			}
 			func2 = func2 + s.charAt(i);
 		}
-		ComplexFunction ans = new ComplexFunction(operation, initFromString(func1), initFromString(func2));
+		if(!(func1.charAt(0) == 'P' || func1.charAt(0) == 'p'|| func1.charAt(0) == 'T' || func1.charAt(0) == 't'|| func1.charAt(0) == 'M' || func1.charAt(0) == 'm'|| func1.charAt(0) == 'D' || func1.charAt(0) == 'd'|| func1.charAt(0) == 'M' || func1.charAt(0) == 'm'|| func1.charAt(0) == 'C' || func1.charAt(0) == 'c')) {
+			this.left = new Polynom(func1);
+		}
+		else {
+			this.left = new ComplexFunction(func1);
+		}
+		if(!(func2.charAt(0) == 'P' || func2.charAt(0) == 'p'|| func2.charAt(0) == 'T' || func2.charAt(0) == 't'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'D' || func2.charAt(0) == 'd'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'C' || func2.charAt(0) == 'c')) {
+			this.left = new Polynom(func2);
+		}
+		else {
+			this.left = new ComplexFunction(func2);
+		}
+		this.op = StringToOperation(operation);
+				
+	}
+	
+	
+	public static Operation StringToOperation(String s) {
+		if (s.equals("Plus") || s.equals("plus")) {
+			return  Operation.Plus;
+		}
+		else if (s.equals("Times") || s.equals("mul")) {
+			return Operation.Times;
+		}
+		else if (s.equals("div") || s.equals("Divide")) {
+			return Operation.Divid;
+		}
+		else if (s.equals("Max") || s.equals("max")) {
+			return Operation.Max;
+		}
+		else if (s.equals("min") || s.equals("Min")) {
+			return Operation.Min;
+		}
+		else if (s.equals("comp") || s.equals("Comp")) {
+			return Operation.Comp;
+		}
+		return Operation.None;
+	}
+	
+	
+	@Override
+	public double f(double x) {
+		double l = left.f(x);
+		double r = right.f(x);
+		if(op == op.Plus) {
+			return l+r;
+		}
+		if(op == op.Times) {
+			return l*r;
+		}
+		if(op == op.Divid) {
+			return l/r;
+		}
+		if(op == op.Max) {
+			return Math.max(l, r);
+		}
+		if(op == op.Min) {
+			return Math.min(l, r);
+		}
+		if(op == op.Comp) {
+			return left.f(right.f(x));
+		}
+		return 0;
+	}
+
+	@Override
+	public function initFromString(String s) {
+		ComplexFunction ans = new ComplexFunction(s);
 		return ans;
 	}
 
 
 	public String toString() {
-		String ans = this.left.toString() + this.op + this.right.toString();
+		String ans = this.left.toString() + this.op.toString() + this.right.toString();
 		return ans;
 	}
 
