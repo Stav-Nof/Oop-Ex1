@@ -144,14 +144,22 @@ public class ComplexFunction implements complex_function {
 
 
 	public String toString() {
-		String ans =  this.op.toString() + "(" + this.left.toString() + "," + this.right.toString() + ")"; 
+		String ans = "";
+		if (this.left != null && this.right != null) {
+			ans =  this.op.toString() + "(" + this.left.toString() + "," + this.right.toString() + ")";
+		}
+		if (this.left != null && this.right == null) {
+			
+		}
+
 		return ans;
 	}
 
 
 	@Override
 	public function copy() {
-		ComplexFunction ans = new ComplexFunction(this.op.toString(),new ComplexFunction (this.left.toString()),new ComplexFunction (this.right.toString()));
+		String temp = this.toString();
+		ComplexFunction ans = new ComplexFunction(temp);
 		return ans;
 	}
 
