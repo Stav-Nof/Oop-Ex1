@@ -69,10 +69,10 @@ public class ComplexFunction implements complex_function{
 			this.left = new ComplexFunction(func1);
 		}
 		if(!(func2.charAt(0) == 'P' || func2.charAt(0) == 'p'|| func2.charAt(0) == 'T' || func2.charAt(0) == 't'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'D' || func2.charAt(0) == 'd'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'C' || func2.charAt(0) == 'c')) {
-			this.left = new Polynom(func2);
+			this.right = new Polynom(func2);
 		}
 		else {
-			this.left = new ComplexFunction(func2);
+			this.right = new ComplexFunction(func2);
 		}
 		this.op = StringToOperation(operation);
 				
