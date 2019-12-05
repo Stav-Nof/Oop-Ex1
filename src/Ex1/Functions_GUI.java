@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import Ex1.StdDraw;;
 
 public class Functions_GUI implements functions {
-	public 	LinkedList<Monom> monoms;
+	private LinkedList<function> ComplexFunctions;
 	
 	
 	@Override
@@ -31,8 +31,8 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public Iterator<function> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		Iterator<function> iterator = this.ComplexFunctions.iterator();
+		return iterator;
 	}
 
 	@Override
