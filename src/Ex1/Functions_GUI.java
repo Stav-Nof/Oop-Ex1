@@ -13,39 +13,51 @@ public class Functions_GUI implements functions {
 	
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ComplexFunctions.size();
 	}
 
+	
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return ComplexFunctions.isEmpty();
 	}
 
+	
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		return ComplexFunctions.contains(o);
 	}
 
+	
 	@Override
 	public Iterator<function> iterator() {
 		Iterator<function> iterator = this.ComplexFunctions.iterator();
 		return iterator;
 	}
 
+	
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		function[] ans = new function[this.size()];
+		this.toArray(ans);
+		return ans;
 	}
 
+	
 	@Override
 	public <T> T[] toArray(T[] a) {
-		// TODO Auto-generated method stub
-		return null;
+		if(a.length < this.size()) {
+			throw new RuntimeException("The given array is to small");
+		}
+		int i = 0;
+		Iterator<function> iterator = this.iterator();
+		while(iterator.hasNext()) {
+			ComplexFunction temp = (ComplexFunction) iterator.next().copy();
+			a[i] = (T) temp;
+		}
+		return a;
 	}
+	
 
 	@Override
 	public boolean add(function e) {
