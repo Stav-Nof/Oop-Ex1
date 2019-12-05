@@ -112,24 +112,25 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public double f(double x) {
+		
 		double l = left.f(x);
 		double r = right.f(x);
-		if(op == op.Plus) {
+		if(op == Operation.Plus) {
 			return l+r;
 		}
-		if(op == op.Times) {
+		if(op == Operation.Times) {
 			return l*r;
 		}
-		if(op == op.Divid) {
+		if(op == Operation.Divid) {
 			return l/r;
 		}
-		if(op == op.Max) {
+		if(op == Operation.Max) {
 			return Math.max(l, r);
 		}
-		if(op == op.Min) {
+		if(op == Operation.Min) {
 			return Math.min(l, r);
 		}
-		if(op == op.Comp) {
+		if(op == Operation.Comp) {
 			return left.f(right.f(x));
 		}
 		return 0;

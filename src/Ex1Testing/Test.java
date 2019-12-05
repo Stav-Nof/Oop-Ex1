@@ -14,10 +14,13 @@ public class Test {
 		function f1 = new Polynom("2x^2+5x");
 		function f2 = new Polynom("2x^2+5x");
 		
-		ComplexFunction cf1 = new ComplexFunction("plus(plus(plus(2x^2+5x,2x^2+5x),2x^2+5x),2x^2+5x)");
+		ComplexFunction cf1 = new ComplexFunction("plus(mul(plus(2x^2-5x,2x^2-5x),2x^2+5x),2x^2+5x)");
+		System.out.println(cf1.f(3));
 		ComplexFunction cf2 = (ComplexFunction) cf1.copy();
 		System.out.println(cf1.toString());
 		System.out.println(cf2.toString());
 	}
+	
+	
 
 }
