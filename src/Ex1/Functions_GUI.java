@@ -8,30 +8,30 @@ import java.util.LinkedList;
 import Ex1.StdDraw;;
 
 public class Functions_GUI implements functions {
-	private LinkedList<function> ComplexFunctions;
+	private LinkedList<function> Functions;
 	
 	
 	@Override
 	public int size() {
-		return ComplexFunctions.size();
+		return Functions.size();
 	}
 
 	
 	@Override
 	public boolean isEmpty() {
-		return ComplexFunctions.isEmpty();
+		return Functions.isEmpty();
 	}
 
 	
 	@Override
 	public boolean contains(Object o) {
-		return ComplexFunctions.contains(o);
+		return Functions.contains(o);
 	}
 
 	
 	@Override
 	public Iterator<function> iterator() {
-		Iterator<function> iterator = this.ComplexFunctions.iterator();
+		Iterator<function> iterator = this.Functions.iterator();
 		return iterator;
 	}
 
@@ -62,7 +62,24 @@ public class Functions_GUI implements functions {
 	@Override
 	public boolean add(function e) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		Iterator<function> iterator = this.iterator();
+		boolean flag = false;
+		while(iterator.hasNext() && flag) {
+			function it = iterator.next();
+			if(e.equals(it)) {
+				flag = false;
+			}
+			else  {
+				flag  = true ;
+				break;
+			}
+		}
+		
+		return flag;
+		
+		
+
 	}
 
 	@Override
