@@ -85,7 +85,23 @@ public class Functions_GUI implements functions {
 	@Override
 	public boolean remove(Object o) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		Iterator<function> iterator = this.iterator();
+		boolean b = false;
+		while(iterator.hasNext()) {
+			function it = iterator.next();
+			if (it.equals(o)) {
+				it = iterator.next(); 
+				b = true;
+			}
+				if (b == true) {
+					break;
+				}
+				
+			}
+		
+		return b;
+		
 	}
 
 	@Override
