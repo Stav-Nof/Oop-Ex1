@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Copy;
+
 import Ex1.StdDraw;;
 
 public class Functions_GUI implements functions {
@@ -91,7 +93,7 @@ public class Functions_GUI implements functions {
 		while(iterator.hasNext()) {
 			function it = iterator.next();
 			if (it.equals(o)) {
-				it = iterator.next(); 
+				this.Functions.remove(it);
 				b = true;
 			}
 				if (b == true) {
@@ -107,7 +109,29 @@ public class Functions_GUI implements functions {
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		if(this.size() < c.size()) {
+			return false;
+		}
+		
+		Iterator<?> iterator = this.iterator();
+		
+		Iterator<?> iterator1 = c.iterator();
+		
+		boolean flag = false;
+		for (int i = 0; i < this.size(); i++) {
+			Object o = iterator.next();
+			for (int j = 0; j < c.size(); j++) {
+				Object o1 = iterator1.next();
+				if(o1.equals(o)) {
+					flag = true;
+					i++;
+					break;
+				}
+				
+			}
+		}
+		return flag;
 	}
 
 	@Override
