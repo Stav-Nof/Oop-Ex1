@@ -2,14 +2,18 @@ package Ex1;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Copy;
+import com.google.gson.Gson;
 
-import Ex1.StdDraw;;
+import Ex1.StdDraw;
 
 public class Functions_GUI implements functions {
 	private LinkedList<function> Functions;
@@ -150,16 +154,31 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-		// TODO Auto-generated method stub
-
+		Gson gson = new Gson();
+		try {
+			FileReader reader = new FileReader(file);
+			Functions_GUI func = gson.fromJson(reader,Functions_GUI.class);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
+	
 	@Override
 	public void saveToFile(String file) throws IOException {
-		// TODO Auto-generated method stub
-
+		Gson gson = new Gson();
+		String json = gson.toJson(this);
+		try {
+			PrintWriter pw = new PrintWriter(new File(file));
+			pw.write(json);
+			pw.close();
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
+	
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 	Iterator<function> iterator =this.iterator();
