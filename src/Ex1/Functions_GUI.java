@@ -99,7 +99,6 @@ public class Functions_GUI implements functions {
 		return false;
 	}
 
-
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		if(this.size() < c.size()) {
@@ -163,6 +162,8 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
+	Iterator<function> iterator =this.iterator();
+	
 		// Don't touch i will finish at Sunday YAKAKOT
 		// number of line segments to plot
 		int n = 100;
@@ -180,12 +181,12 @@ public class Functions_GUI implements functions {
 		StdDraw.setXscale(0, Math.PI);
 		StdDraw.setYscale(minY, maxY);
 
-		// vertical lines
+		// vertical lines 'Range ry'
 		StdDraw.setPenColor(Color.LIGHT_GRAY);
 		for (int i = 0; i <= n; i=i+10) {
 			StdDraw.line(x[i], minY, x[i], maxY);
 		}
-		// horizontal  lines
+		// horizontal  lines 'Range rx'
 		for (double i = minY; i <= maxY; i=i+0.5) {
 			StdDraw.line(0, i, Math.PI, i);
 		}
@@ -207,9 +208,6 @@ public class Functions_GUI implements functions {
 		for (int i = 0; i < n; i++) {
 			StdDraw.line(x[i], y[i], x[i+1], y[i+1]);
 		}
-		StdDraw.setPenColor(Color.RED);
-		StdDraw.setPenRadius(0.01);
-		StdDraw.point(x[n/2], 1);
 	}
 
 	@Override
