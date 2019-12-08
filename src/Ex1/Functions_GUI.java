@@ -171,7 +171,7 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-		// D'ont touch i will finish at Sunday
+		// Don't touch i will finish at Sunday YAKAKOT
 		// number of line segments to plot
 		int n = 100;
 		double maxY = 2.0, minY = -2.0;
