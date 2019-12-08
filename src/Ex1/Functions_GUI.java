@@ -178,7 +178,9 @@ public class Functions_GUI implements functions {
 			y[i] = Math.sin(4*x[i]);
 		}		
 		// rescale the coordinate system
+		//width
 		StdDraw.setXscale(0, Math.PI);
+		//height
 		StdDraw.setYscale(minY, maxY);
 
 		// vertical lines 'Range ry'
