@@ -5,33 +5,35 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Copy;
+
 import Ex1.StdDraw;;
 
 public class Functions_GUI implements functions {
-	private LinkedList<function> ComplexFunctions;
+	private LinkedList<function> Functions;
 	
 	
 	@Override
 	public int size() {
-		return ComplexFunctions.size();
+		return Functions.size();
 	}
 
 	
 	@Override
 	public boolean isEmpty() {
-		return ComplexFunctions.isEmpty();
+		return Functions.isEmpty();
 	}
 
 	
 	@Override
 	public boolean contains(Object o) {
-		return ComplexFunctions.contains(o);
+		return Functions.contains(o);
 	}
 
 	
 	@Override
 	public Iterator<function> iterator() {
-		Iterator<function> iterator = this.ComplexFunctions.iterator();
+		Iterator<function> iterator = this.Functions.iterator();
 		return iterator;
 	}
 
@@ -62,19 +64,75 @@ public class Functions_GUI implements functions {
 	@Override
 	public boolean add(function e) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		Iterator<function> iterator = this.iterator();
+		boolean flag = false;
+		while(iterator.hasNext() && flag) {
+			function it = iterator.next();
+			if(e.equals(it)) {
+				flag = false;
+			}
+			else  {
+				flag  = true ;
+				e = iterator.next();
+				break;
+			}
+		}
+		
+		return flag;
+		
+		
+
 	}
 
 	@Override
 	public boolean remove(Object o) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		Iterator<function> iterator = this.iterator();
+		boolean b = false;
+		while(iterator.hasNext()) {
+			function it = iterator.next();
+			if (it.equals(o)) {
+				this.Functions.remove(it);
+				b = true;
+			}
+				if (b == true) {
+					break;
+				}
+				
+			}
+		
+		return b;
+		
 	}
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		if(this.size() < c.size()) {
+			return false;
+		}
+		
+		Iterator<?> iterator = this.iterator();
+		
+		Iterator<?> iterator1 = c.iterator();
+		
+		boolean flag = false;
+		for (int i = 0; i < this.size(); i++) {
+			Object o = iterator.next();
+			for (int j = 0; j < c.size(); j++) {
+				Object o1 = iterator1.next();
+				if(o1.equals(o)) {
+					flag = true;
+					i++;
+					break;
+				}
+				
+			}
+		}
+		return flag;
 	}
 
 	@Override
