@@ -17,6 +17,13 @@ import Ex1.StdDraw;
 
 public class Functions_GUI implements functions {
 	private LinkedList<function> Functions;
+	public static Color[] Colors = {Color.blue, Color.cyan,
+			Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
+
+	
+	public Functions_GUI() {
+		Functions = new LinkedList<function>();
+	}
 
 
 	@Override
@@ -199,58 +206,61 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-		Iterator<function> iterator =this.iterator();
-		// Don't touch i will finish at Sunday YAKAKOT
-		// number of line segments to plot
-		int n = 100;
-		double maxY = 2.0, minY = -2.0;
-
-		// the function y = sin(4x), sampled at n+1 points
-		// between x = 0 and x = pi
-		double[] x = new double[n+1];
-		double[] y = new double[n+1];
-		for (int i = 0; i <= n; i++) {
-			x[i] = Math.PI * i / n;
-			y[i] = Math.sin(4*x[i]);
-		}		
-		// rescale the coordinate system
-		//width
-		StdDraw.setXscale(0, Math.PI);
-		//height
+		StdDraw.setCanvasSize(width, height);
+		double minX = rx.get_min(), maxX = rx.get_max(),sizX = maxX - minX;
+		double minY = ry.get_min(), maxY = ry.get_max(),sizY = maxY - minY;
+		StdDraw.setXscale(minX, maxX);
 		StdDraw.setYscale(minY, maxY);
-
-		// vertical lines 'Range ry'
 		StdDraw.setPenColor(Color.LIGHT_GRAY);
-		for (int i = 0; i <= n; i=i+10) {
-			StdDraw.line(x[i], minY, x[i], maxY);
+		//vertical lines
+		int vertical = (int) minX;
+		for (int i = 0; i <= sizX; i++) {
+			StdDraw.line(vertical, minY, vertical, maxY);
+			vertical = (int) (vertical + (sizX / sizX));
 		}
-		// horizontal  lines 'Range rx'
-		for (double i = minY; i <= maxY; i=i+0.5) {
-			StdDraw.line(0, i, Math.PI, i);
+		//horizontal  lines
+		int horizontal = (int) minY;
+		for (double i = 0; i <= sizY; i++) {
+			StdDraw.line(minX, horizontal, maxX, horizontal);
+			horizontal = (int) (horizontal + (sizY / sizY));
 		}
-		// x axis		
+		//x axis
+		vertical = (int) minX;
 		StdDraw.setPenColor(Color.BLACK);
 		StdDraw.setPenRadius(0.005);
-		StdDraw.line(0, y[n/2], Math.PI, y[n/2]);
+		StdDraw.line(minX,0, maxX, 0);
 		StdDraw.setFont(new Font("TimesRoman", Font.BOLD, 15));
-		for (int i = 0; i <= n; i=i+10) {
-			StdDraw.text(x[i]-0.07, -0.07, Integer.toString(i-n/2));
+		for (int i = 0; i <= sizX; i++) {
+			StdDraw.text(vertical, -0.15, "" + vertical);
+			vertical =  vertical + 1;
 		}
-		// y axis	
-		StdDraw.line(x[n/2], minY, x[n/2], maxY);
-		for (double i = minY; i <= maxY; i=i+0.5) {
-			StdDraw.text(x[n/2]-0.07, i+0.07, Double.toString(i));
+		//y axis
+		horizontal = (int) minY;
+		StdDraw.line(0,minY, 0, maxY);
+		for (int i = 0; i <= sizY; i++) {
+			StdDraw.text(-0.15, horizontal, "" + horizontal);
+			horizontal =  horizontal + 1;
 		}
+		//draw functions
 
-		// plot the approximation to the function
-		for (int i = 0; i < n; i++) {
-			StdDraw.line(x[i], y[i], x[i+1], y[i+1]);
+		Iterator<function> iterator = this.iterator();
+		double steps = sizX / resolution;
+		while(iterator.hasNext()) {
+			StdDraw.setPenColor(Colors[(int) (Math.random()*Colors.length)]);
+			function temp = iterator.next();
+			for(double i = minX; i <= maxX; i = i + steps) {
+				StdDraw.line(i, temp.f(i), i + steps, temp.f(i + steps));
+			}
 		}
 	}
+
 
 	@Override
 	public void drawFunctions(String json_file) {
 		// TODO Auto-generated method stub
 	}
+	
+	
+
 
 }
