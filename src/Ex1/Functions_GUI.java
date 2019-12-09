@@ -70,34 +70,25 @@ public class Functions_GUI implements functions {
 	@Override
 	public boolean add(function e) {
 		Iterator<function> iterator = this.iterator();
-		boolean flag = false;
-		while(iterator.hasNext() && flag) {
+		while(iterator.hasNext()) {
 			function it = iterator.next();
 			if(e.equals(it)) {
-				flag = false;
-			}
-			else  {
-				flag  = true ;
-				this.Functions.add(e);
-				break;
+				return false;
 			}
 		}
-		return flag;
+		this.Functions.add(e);
+		return true;
 	}
 
 
 	@Override
 	public boolean remove(Object o) {
 		Iterator<function> iterator = this.iterator();
-		boolean b = false;
 		while(iterator.hasNext()) {
 			function thiso = iterator.next();
 			if (thiso.equals(o)) {
 				this.Functions.remove(thiso);
 				return true;
-			}
-			if (b == true) {
-				break;
 			}
 		}
 		return false;
@@ -108,7 +99,7 @@ public class Functions_GUI implements functions {
 		if(this.size() < c.size()) {
 			return false;
 		}
-		Iterator<?> thisIterator = this.iterator();
+		Iterator<function> thisIterator = this.iterator();
 		Iterator<?> cIterator = c.iterator();
 		while(cIterator.hasNext()) {
 			boolean flag = false;
@@ -130,21 +121,48 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public boolean addAll(Collection<? extends function> c) {
-		// TODO Auto-generated method stub
+		// TODO
 		return false;
 	}
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Iterator<?> cIterator = c.iterator();
+		while(cIterator.hasNext()) {
+			function cFunction = (function) cIterator.next();
+			boolean temp = this.remove(cFunction);
+			if (temp) {
+				flag = true;
+			}
+		}
+		return flag;
 	}
+	
 
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Iterator<function> thisIterator = this.iterator();
+		while (thisIterator.hasNext()) {
+			function thisFunction = thisIterator.next();
+			Iterator<?> cIterator = c.iterator();
+			boolean inC = false;
+			while(cIterator.hasNext()) {
+				function cFunction = (function) cIterator.next();
+				if(thisFunction.equals(cFunction)) {
+					inC = true;
+					break;
+				}
+			}
+			if (inC) {
+				this.remove(thisFunction);
+				flag = true;
+			}
+		}
+		return flag;
 	}
+	
 
 	@Override
 	public void clear() {
