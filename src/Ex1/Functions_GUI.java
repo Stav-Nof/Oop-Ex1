@@ -203,7 +203,7 @@ public class Functions_GUI implements functions {
 
 		// Don't touch i will finish at Sunday YAKAKOT
 		// number of line segments to plot
-		double n = 10.5;// (int) ((rx.get_max() - rx.get_min()) / resolution);
+		int n = 100;
 		double maxY = 2.0, minY = -2.0;
 
 		// the function y = sin(4x), sampled at n+1 points
