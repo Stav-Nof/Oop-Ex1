@@ -167,6 +167,7 @@ public class Functions_GUI implements functions {
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
+		this.Functions.clear();
 
 	}
 
