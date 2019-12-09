@@ -138,7 +138,7 @@ public class Functions_GUI implements functions {
 		}
 		return flag;
 	}
-	
+
 
 	@Override
 	public boolean retainAll(Collection<?> c) {
@@ -162,14 +162,13 @@ public class Functions_GUI implements functions {
 		}
 		return flag;
 	}
-	
+
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
 		this.Functions.clear();
-
 	}
+
 
 	@Override
 	public void initFromFile(String file) throws IOException {
@@ -182,7 +181,7 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-	
+
 	@Override
 	public void saveToFile(String file) throws IOException {
 		Gson gson = new Gson();
@@ -197,14 +196,14 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-	
+
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-	Iterator<function> iterator =this.iterator();
-	
+		Iterator<function> iterator =this.iterator();
+
 		// Don't touch i will finish at Sunday YAKAKOT
 		// number of line segments to plot
-		int n = 100;
+		double n = 10.5;// (int) ((rx.get_max() - rx.get_min()) / resolution);
 		double maxY = 2.0, minY = -2.0;
 
 		// the function y = sin(4x), sampled at n+1 points
