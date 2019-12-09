@@ -200,7 +200,6 @@ public class Functions_GUI implements functions {
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 		Iterator<function> iterator =this.iterator();
-
 		// Don't touch i will finish at Sunday YAKAKOT
 		// number of line segments to plot
 		int n = 100;
