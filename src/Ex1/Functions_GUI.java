@@ -78,7 +78,7 @@ public class Functions_GUI implements functions {
 			}
 			else  {
 				flag  = true ;
-				e = iterator.next();
+				this.Functions.add(e);
 				break;
 			}
 		}
