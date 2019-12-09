@@ -4,6 +4,7 @@ public class ComplexFunction implements complex_function {
 	function left;
 	function right;
 	Operation op;
+	function center;
 
 
 	public ComplexFunction(String s, function left, function right) {
@@ -17,6 +18,24 @@ public class ComplexFunction implements complex_function {
 		if (this.right == null) {
 			this.op = Operation.None;
 		}
+	}
+	
+	public ComplexFunction(Operation op, function left, function right) {
+		this.op = op;
+		this.left = left;
+		this.right = right; 
+		if (this.left == null) {
+			this.right = left;
+			this.right = null;
+		}
+		if (this.right == null) {
+			this.op = Operation.None;
+		}
+	}
+	public ComplexFunction(function f) {
+		
+		initFromString(f.toString());
+		
 	}
 
 
