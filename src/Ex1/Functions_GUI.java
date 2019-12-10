@@ -20,7 +20,7 @@ public class Functions_GUI implements functions {
 	public static Color[] Colors = {Color.blue, Color.cyan,
 			Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
 
-	
+
 	public Functions_GUI() {
 		Functions = new LinkedList<function>();
 	}
@@ -76,15 +76,7 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public boolean add(function e) {
-		Iterator<function> iterator = this.iterator();
-		while(iterator.hasNext()) {
-			function it = iterator.next();
-			if(e.equals(it)) {
-				return false;
-			}
-		}
-		this.Functions.add(e);
-		return true;
+		return this.Functions.add(e);
 	}
 
 
@@ -128,9 +120,9 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public boolean addAll(Collection<? extends function> c) {
-		// TODO
-		return false;
+		return this.Functions.addAll(c);
 	}
+
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
@@ -180,12 +172,14 @@ public class Functions_GUI implements functions {
 	@Override
 	public void initFromFile(String file) throws IOException {
 		Gson gson = new Gson();
+		Functions_GUI temp = null;
 		try {
 			FileReader reader = new FileReader(file);
-			Functions_GUI func = gson.fromJson(reader,Functions_GUI.class);
+			temp = gson.fromJson(reader,Functions_GUI.class);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		this.Functions = temp.Functions;
 	}
 
 
@@ -257,10 +251,10 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
-		// TODO Auto-generated method stub
+		functions temp = new initFromFile();
 	}
-	
-	
+
+
 
 
 }
