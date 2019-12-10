@@ -15,6 +15,9 @@ class PolynomTest {
 		assertEquals((new Polynom("x")).toString(), new Polynom("1x^1").toString());
 		assertEquals((new Polynom("-2x")).toString(), new Polynom("-x-x").toString());
 		assertEquals((new Polynom("x+4+x^2+2x^2+5+5x")).toString(), new Polynom("3x^2+6x+9").toString());
+		Polynom p1 = new Polynom("3x^5+2x^4-x");
+		Polynom p2 = new Polynom("3x^5+2x^4-x");
+		
 	}
 	@Test
 	void AddPolynomsCopyAndEquals() {

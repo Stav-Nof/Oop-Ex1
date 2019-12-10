@@ -254,4 +254,19 @@ public class ComplexFunction implements complex_function {
 	public Operation getOp() {
 		return op;
 	}
+	
+	public boolean equals(ComplexFunction cf) {
+		
+		if(this.op == cf.op && this.left == cf.left && this.right == cf.right) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+		
+		
+
+		
+	}
 }
