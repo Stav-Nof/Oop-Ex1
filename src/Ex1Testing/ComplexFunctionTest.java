@@ -36,8 +36,8 @@ class ComplexFunctionTest {
 			ComplexFunction cf6 = new ComplexFunction("div(mul(2x,3x^2-5x+2),-x");
 			ComplexFunction cf7 = new ComplexFunction("div(3.1+2.4x^2-x^4,5+2x-3.3x+0.1x^5)" );
 			
-//			assertTrue(cf.equals(cf1));
-//			assertTrue(cf5.equals(cf3));
+			assertTrue(cf.equals(cf1));
+			assertTrue(cf5.equals(cf3));
 			assertNotEquals(cf3.toString(),cf6.toString());
 			assertEquals(cf7.toString(), cf.toString());
 			
@@ -55,6 +55,7 @@ class ComplexFunctionTest {
 		String[] s3 = {"x+3","x-2", "x-4"};
 		Polynom p1 = new Polynom(s1);
 		Polynom p2 = new Polynom(s2);
+		Polynom p5 = new Polynom("-3x^2+2x^3");
 		Monom m = new Monom("4x^2");
 		Monom m1 = new Monom("-2x");
 		Monom m2 = new Monom("4x^5");
@@ -72,10 +73,13 @@ class ComplexFunctionTest {
 			ComplexFunction cf3 = new ComplexFunction(Operation.Max, new Polynom(s3[0]), p4);
 			
 			ComplexFunction cf4 = new ComplexFunction("max", new Polynom(s3[0]), p4 );
-			ComplexFunction cf5 = new ComplexFunction("div", cf4, m1 );
+			ComplexFunction cf5 = new ComplexFunction("div", new Polynom("5+2x-3.3x+0.1x^5"), m1 );
+			ComplexFunction cf6 = new ComplexFunction(Operation.Divid , p2, p3);
+			ComplexFunction cf7 = new ComplexFunction("div", new Polynom("5+2x-3.3x+0.1x^5"), m1 );
 			
 		assertFalse(cf.equals(cf1));
-		//assertEquals(cf3,cf4);
+		
+		
 		
 		
 		
