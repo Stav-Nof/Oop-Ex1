@@ -233,18 +233,51 @@ class ComplexFunctionTest {
 	void testDiv() {
 	
 		
+		String s = "x^2+3x-5";
+		String s2 ="-x^2";
+		ComplexFunction cf3 = new ComplexFunction("plus(2x^2,3x^2)");
+		
+		function f1 = cf3.initFromString(s2);
+		cf3.div(f1);
+		
+		Monom exp = new Monom ("-5");
+		function f2 = (function)exp;
+		assertEquals(cf3.toString(),exp.toString());
+		assertTrue(cf3.equals(f2));
+		
 		
 		
 	}
 
 	@Test
 	void testMax() {
-		fail("Not yet implemented");
+		
+		String s = "x^2+3x-5";
+		String s2 ="-x^2";
+		ComplexFunction cf3 = new ComplexFunction("plus(2x^2,3x^2)");
+		
+		function f1 = cf3.initFromString(s2);
+		cf3.max(f1);
+		
+		Monom exp = new Monom ("5x^2");
+		function f2 = (function)exp;
+		assertEquals(cf3.toString(),exp.toString());
+		assertTrue(cf3.equals(f2));
 	}
 
 	@Test
 	void testMin() {
-		fail("Not yet implemented");
+		String s = "x^2+3x-5";
+		String s2 ="-x^2";
+		ComplexFunction cf3 = new ComplexFunction("plus(2x^2,3x^2)");
+		
+		function f1 = cf3.initFromString(s2);
+		cf3.min(f1);
+		
+		Monom exp = new Monom ("-x^2");
+		function f2 = (function)exp;
+		assertEquals(cf3.toString(),exp.toString());
+		assertTrue(cf3.equals(f2));
 	}
 
 	@Test
