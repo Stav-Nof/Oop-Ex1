@@ -4,7 +4,7 @@ public class ComplexFunction implements complex_function {
 	function left;
 	function right;
 	Operation op;
-	
+
 
 
 	public ComplexFunction(String s, function left, function right) {
@@ -19,7 +19,7 @@ public class ComplexFunction implements complex_function {
 			this.op = Operation.None;
 		}
 	}
-	
+
 	public ComplexFunction(Operation op, function left, function right) {
 		this.op = op;
 		this.left = left;
@@ -33,10 +33,10 @@ public class ComplexFunction implements complex_function {
 		}
 	}
 	public ComplexFunction(function f) {
-		
-		
+
+
 		initFromString(f.toString());
-		
+
 	}
 
 
@@ -133,7 +133,7 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public double f(double x) {
-		
+
 		double l = left.f(x);
 		double r = right.f(x);
 		if(op == Operation.Plus) {
@@ -171,7 +171,7 @@ public class ComplexFunction implements complex_function {
 			ans =  this.op.toString() + "(" + this.left.toString() + "," + this.right.toString() + ")";
 		}
 		if (this.left != null && this.right == null) {
-			
+
 		}
 
 		return ans;
@@ -256,19 +256,12 @@ public class ComplexFunction implements complex_function {
 	public Operation getOp() {
 		return op;
 	}
-	
+
+
 	public boolean equals(ComplexFunction cf) {
-		
-		if(this.op == cf.op && this.left == cf.left && this.right == cf.right) {
+		if(this.op == cf.op && this.left.equals(cf.left) && this.right.equals(cf.right)) {
 			return true;
 		}
-		else {
-			return false;
-		}
-		
-		
-		
-
-		
+		return false;
 	}
 }
