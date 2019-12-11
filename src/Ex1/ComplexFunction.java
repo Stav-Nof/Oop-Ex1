@@ -4,7 +4,7 @@ public class ComplexFunction implements complex_function {
 	function left;
 	function right;
 	Operation op;
-	function center;
+	
 
 
 	public ComplexFunction(String s, function left, function right) {
@@ -33,6 +33,7 @@ public class ComplexFunction implements complex_function {
 		}
 	}
 	public ComplexFunction(function f) {
+		
 		
 		initFromString(f.toString());
 		
