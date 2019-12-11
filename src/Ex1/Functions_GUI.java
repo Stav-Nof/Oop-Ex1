@@ -251,7 +251,6 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
-		functions temp = new functions();
 	}
 
 

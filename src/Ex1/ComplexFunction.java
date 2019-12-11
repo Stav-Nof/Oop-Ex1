@@ -9,8 +9,8 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction(String s, function left, function right) {
 		this.op = StringToOperation(s);
-		this.left = left;
-		this.right = right; 
+		this.left = left.copy();
+		this.right = right.copy(); 
 		if (this.left == null) {
 			this.right = left;
 			this.right = null;
@@ -41,6 +41,7 @@ public class ComplexFunction implements complex_function {
 
 
 	public ComplexFunction(String s) {
+		s.toLowerCase();
 		if(s.isEmpty()) {
 			return;
 		}
@@ -85,7 +86,7 @@ public class ComplexFunction implements complex_function {
 			func2 = func2 + s.charAt(i);
 		}
 		if (!func1.isEmpty()) {
-			if(!(func1.charAt(0) == 'P' || func1.charAt(0) == 'p'|| func1.charAt(0) == 'T' || func1.charAt(0) == 't'|| func1.charAt(0) == 'M' || func1.charAt(0) == 'm'|| func1.charAt(0) == 'D' || func1.charAt(0) == 'd'|| func1.charAt(0) == 'C' || func1.charAt(0) == 'c' || func1.charAt(0) == 'A' || func2.charAt(0) == 'a')) {
+			if(func1.charAt(0) >= 'a' && func1.charAt(0) <= 'z' && func1.charAt(0) != 'x') {
 				this.left = new Polynom(func1);
 			}
 			else {
@@ -96,7 +97,7 @@ public class ComplexFunction implements complex_function {
 			this.left = null;
 		}
 		if (!func2.isEmpty()) {
-			if(!(func2.charAt(0) == 'P' || func2.charAt(0) == 'p'|| func2.charAt(0) == 'T' || func2.charAt(0) == 't'|| func2.charAt(0) == 'M' || func2.charAt(0) == 'm'|| func2.charAt(0) == 'D' || func2.charAt(0) == 'd'|| func2.charAt(0) == 'C' || func2.charAt(0) == 'c'|| func1.charAt(0) == 'A' || func2.charAt(0) == 'a')) {
+			if(func2.charAt(0) >= 'a' && func2.charAt(0) <= 'z' && func2.charAt(0) != 'x') {
 				this.right = new Polynom(func2);
 			}
 			else {

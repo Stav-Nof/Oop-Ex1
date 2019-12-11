@@ -64,11 +64,12 @@ public class Monom implements function{
 		if (s.isEmpty()) {
 			throw new RuntimeException("string empty");
 		}
+		String temp = "";
 		boolean hasx = false;
 		boolean haspower = false;
 		for (int i = 0; i < s.length(); i++) {
 			if (s.charAt(i) < '0' || s.charAt(i) > '9') { //if the char is not a number 
-				if (s.charAt(i) != '^' && s.charAt(i) != 'x' && s.charAt(i) != '.' && s.charAt(i) != '-') { // if the char is not '^','x','.' or '-'.
+				if (s.charAt(i) != '^' && s.charAt(i) != 'x' && s.charAt(i) != '.' && s.charAt(i) != '-' && s.charAt(i) != ' ') { // if the char is not '^','x','.' or '-'.
 					throw new RuntimeException("undefined string");
 				}
 			}
@@ -89,7 +90,12 @@ public class Monom implements function{
 					throw new RuntimeException("undefined string");
 				}
 			}
+			if(s.charAt(i) == ' ') {
+				continue;
+			}
+			temp = temp + s.charAt(i);
 		}
+		s = temp;
 		if (s.charAt(0) == 'x' || s.charAt(0) == 'X') { // if the first char is a 'x' , adds a 1 as coefficient.
 			s = "1" + s;
 		}

@@ -90,7 +90,11 @@ class Functions_GUITest {
 		functions ans = new Functions_GUI();
 		String s1 = "3.1+2.4x^2-x^4";
 		String s2 = "5+2x-3.3x+0.1x^5";
+<<<<<<< HEAD
 		String[] s3 = {"x+3","x-2","x-4"};
+=======
+		String[] s3 = {"x+3","x-2", "x-4"};
+>>>>>>> branch 'master' of https://github.com/yarinShapira/Oop-assignement
 		Polynom p1 = new Polynom(s1);
 		Polynom p2 = new Polynom(s2);
 		Polynom p3 = new Polynom(s3[0]);
