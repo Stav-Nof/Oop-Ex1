@@ -2,6 +2,7 @@ package Ex1;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,6 +14,7 @@ import java.util.LinkedList;
 
 import com.google.gson.Gson;
 
+
 import Ex1.StdDraw;
 
 public class Functions_GUI implements functions {
@@ -21,8 +23,19 @@ public class Functions_GUI implements functions {
 			Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
 
 
+
+	
+	
 	public Functions_GUI() {
 		Functions = new LinkedList<function>();
+	}
+
+
+	public Functions_GUI(function e) {
+		if (Functions == null) {
+			Functions = new LinkedList<function>();
+		}
+		Functions.add(e);
 	}
 
 
@@ -171,15 +184,23 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-		Gson gson = new Gson();
-		Functions_GUI temp = null;
-		try {
-			FileReader reader = new FileReader(file);
-			temp = gson.fromJson(reader,Functions_GUI.class);
-		} catch (FileNotFoundException e) {
+		Functions_GUI fun = new Functions_GUI();
+		try 
+		{
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			String inp = reader.readLine();
+			String f ="f(x):";
+			while(inp!=null) {
+				inp=inp.replaceAll("\\s+","");
+				inp = inp.substring(inp.indexOf("f(x):")+f.length());
+				ComplexFunction cf = new ComplexFunction(inp);
+				fun.add(cf);
+				inp=reader.readLine();
+			}
+			reader.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.Functions = temp.Functions;
 	}
 
 
@@ -236,7 +257,6 @@ public class Functions_GUI implements functions {
 			horizontal =  horizontal + 1;
 		}
 		//draw functions
-
 		Iterator<function> iterator = this.iterator();
 		double steps = sizX / resolution;
 		while(iterator.hasNext()) {
@@ -251,9 +271,6 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
+
 	}
-
-
-
-
 }

@@ -60,6 +60,10 @@ public class Monom implements function{
 	 * @throws Exception if the power is negative
 	 * 
 	 */
+	public Monom() {
+	}
+	
+	
 	public Monom(String s) {
 		if (s.isEmpty()) {
 			throw new RuntimeException("string empty");

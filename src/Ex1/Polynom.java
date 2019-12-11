@@ -17,7 +17,7 @@ import Ex1.Monom;
 public class Polynom implements Polynom_able{
 	public LinkedList<Monom> monoms;
 
-
+	
 	/**
 	 * Zero (empty polynom)
 	 */
