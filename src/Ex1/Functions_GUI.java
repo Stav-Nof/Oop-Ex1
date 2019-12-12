@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.concurrent.CompletionException;
 
 import com.google.gson.Gson;
 
@@ -24,8 +26,8 @@ public class Functions_GUI implements functions {
 
 
 
-	
-	
+
+
 	public Functions_GUI() {
 		Functions = new LinkedList<function>();
 	}
@@ -184,37 +186,46 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-		Functions_GUI fun = new Functions_GUI();
-		try 
-		{
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String inp = reader.readLine();
-			String f ="f(x):";
-			while(inp!=null) {
-				inp=inp.replaceAll("\\s+","");
-				inp = inp.substring(inp.indexOf("f(x):")+f.length());
-				ComplexFunction cf = new ComplexFunction(inp);
-				fun.add(cf);
-				inp=reader.readLine();
-			}
-			reader.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        String line = "";
+        function toAdd = null;
+        try {
+        	BufferedReader buffer = new BufferedReader(new FileReader(file));
+            while ((line = buffer.readLine()) != null) {
+    			if((line.charAt(0) >= '0' && line.charAt(0) <= '9') || line.charAt(0) == 'x' || line.charAt(0) == '-' || line.charAt(0) == '+') {
+    				toAdd = new Polynom(line);
+    			}
+    			else {
+    				toAdd = new ComplexFunction(line);
+    			}
+    			this.add(toAdd);
+            }
+
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+            System.out.println("could not read file");
+        }
 	}
 
 
 	@Override
 	public void saveToFile(String file) throws IOException {
-		Gson gson = new Gson();
-		String json = gson.toJson(this);
+		Iterator<function> iter = this.iterator();
 		try {
 			PrintWriter pw = new PrintWriter(new File(file));
-			pw.write(json);
+			StringBuilder sb = new StringBuilder();
+			while(iter.hasNext()) {
+				sb.append(iter.next().toString());
+				sb.append("\n");
+			}
+			pw.write(sb.toString());
 			pw.close();
 		} 
-		catch (FileNotFoundException e) {
+		catch (FileNotFoundException e) 
+		{
 			e.printStackTrace();
+			return;
 		}
 	}
 
@@ -271,6 +282,7 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
-
+		Gson gson = new Gson();
+		
 	}
 }
