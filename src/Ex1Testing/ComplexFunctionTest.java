@@ -119,7 +119,7 @@ class ComplexFunctionTest {
 			ComplexFunction cf7 = new ComplexFunction(Operation.Times , cf5 , new Polynom("-6x^6+7x^2"));
 			ComplexFunction cf6 = new ComplexFunction("div", cf4, m1 );
 			
-			function f = cf.initFromString(cf7.toString());
+			ComplexFunction f = (ComplexFunction) cf.initFromString(cf7.toString());
 			assertEquals(cf4.toString(), f.toString());
 			assertTrue(cf4.equals(f));
 		

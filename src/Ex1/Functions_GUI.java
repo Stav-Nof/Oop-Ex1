@@ -282,7 +282,25 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
-		Gson gson = new Gson();
-		
+		try {
+			Gson gson = new Gson();
+			FileReader reader = new FileReader(json_file);
+			GUI_params gp = gson.fromJson(reader,GUI_params.class);
+			Range rx = new Range(gp.Range_X[0], gp.Range_X[1]);
+			Range ry = new Range(gp.Range_Y[0], gp.Range_Y[1]);
+			this.drawFunctions(gp.Width, gp.Height, rx, ry, gp.Resolution);
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	class GUI_params{
+		public int Width;
+		public int Height;
+		public int Resolution;
+		public double []Range_X;
+		public double []Range_Y;
 	}
 }
