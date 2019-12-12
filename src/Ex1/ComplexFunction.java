@@ -26,6 +26,7 @@ public class ComplexFunction implements complex_function {
  * Constructs a ComplexFunction by receiving a String(which is the operation), a function on its left and right side.
  */
 	public ComplexFunction(String s, function left, function right) {
+		s = s.toLowerCase();
 		this.op = StringToOperation(s);
 		this.left = left.copy();
 		this.right = right.copy(); 
@@ -154,7 +155,7 @@ public class ComplexFunction implements complex_function {
 		else if (s.equals("times") || s.equals("mul")) {
 			return Operation.Times;
 		}
-		else if (s.equals("div") || s.equals("divide")) {
+		else if (s.equals("div") || s.equals("divide") || s.equals("divid")) {
 			return Operation.Divid;
 		}
 		else if (s.equals("max")) {
@@ -213,6 +214,9 @@ public class ComplexFunction implements complex_function {
  */
 	@Override
 	public function initFromString(String s) {
+		if((s.charAt(0) >= '0' && s.charAt(0) <= '9') || s.charAt(0) == 'x' || s.charAt(0) == '-' || s.charAt(0) == '+') {
+			return new Polynom(s);
+		}
 		ComplexFunction ans = new ComplexFunction(s);
 		return ans;
 	}
@@ -226,7 +230,7 @@ public class ComplexFunction implements complex_function {
 		if (this.left != null && this.right != null) {
 			ans =  this.op.toString() + "(" + this.left.toString() + "," + this.right.toString() + ")";
 		}
-		if (this.right == null) {
+		if (this.right == null && this.left != null) {
 			ans = this.left.toString();
 		}
 		return ans;
@@ -279,7 +283,7 @@ public class ComplexFunction implements complex_function {
 		function temp = this.copy();
 		this.left = temp;
 		this.op = Operation.Divid;
-		this.right  = f1;
+		this.right = f1;
 	}
 
 /*
@@ -292,7 +296,7 @@ public class ComplexFunction implements complex_function {
 		function temp = this.copy();
 		this.left = temp;
 		this.op = Operation.Max;
-		this.right  = f1;
+		this.right = f1;
 	}
 
 /*

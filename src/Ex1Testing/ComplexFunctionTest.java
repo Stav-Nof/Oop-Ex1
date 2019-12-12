@@ -12,6 +12,7 @@ import Ex1.function;
 
 class ComplexFunctionTest {
 
+	
 	@Test
 	void firstConstructor() {
 		String s1 = "3.1+2.4x^2-x^4";
@@ -39,14 +40,9 @@ class ComplexFunctionTest {
 		assertTrue(cf5.equals(cf3));
 		assertNotEquals(cf3.toString(),cf6.toString());
 		assertEquals(cf7.toString(), cf.toString());
-
-
-
-
-
-
 	}
 
+	
 	@Test
 	void secondConstructor() {
 		String s1 = "3.1+2.4x^2-x^4";
@@ -70,7 +66,7 @@ class ComplexFunctionTest {
 		ComplexFunction cf4 = new ComplexFunction("max", new Polynom(s3[1]), p4 );
 		ComplexFunction cf5 = new ComplexFunction("div", new Polynom("5+2x-3.3x+0.1x^5"), m1 );
 		ComplexFunction cf6 = new ComplexFunction(Operation.Divid , p2, p3);
-		ComplexFunction cf7 = new ComplexFunction("div", new Polynom("5+2x-3.3x+0.1x^5"), new Monom("-x") );
+		ComplexFunction cf7 = new ComplexFunction("div", new Polynom("5+2x-3.3x+0.1x^5"), new Monom("-2x") );
 
 		assertFalse(cf.equals(cf1));
 		assertTrue(cf3.equals(cf4));
@@ -108,35 +104,7 @@ class ComplexFunctionTest {
 	}
 
 
-	@Test
-	void testStringToOperation() {
 
-		String s  = "plus";
-		String s1 = "mul";
-		String s2 = "max";
-		String s3 = "Min";
-		String s4 = "Comp";
-		String s5 = "Divide";
-		String s6 = "weojiwen";
-
-		Operation op = Operation.Plus;
-		Operation op1 = Operation.Times;
-		Operation op2= Operation.Max;
-		Operation op3 = Operation.Min;
-		Operation op4 = Operation.Comp;
-		Operation op5 = Operation.Divid;
-		Operation op6 = Operation.None;
-
-		assertEquals(s,op.toString());
-		assertEquals(s1,op1.toString());
-		assertEquals(s2,op2.toString());
-		assertEquals(s3,op3.toString());
-		assertEquals(s4,op4.toString());
-		assertEquals(s5,op5.toString());
-		assertEquals(s6,op6.toString());
-
-
-	}
 
 	@Test
 	void testF() {
@@ -166,49 +134,23 @@ class ComplexFunctionTest {
 
 	}
 
-	@Test
-	void testPlus() {
-
-		String s = "x^2+3x-5";
-		String s2 ="3x^2-10x+2";
-		ComplexFunction cf3 = new ComplexFunction("plus(2x^2,3x^2-5x+2)");
-		function f = cf3.initFromString(s);
-		function f1 = cf3.initFromString(s2);
-		cf3.plus(f1);
-
-		Polynom exp = new Polynom ("8x^2-15x+4");
-		function f2 = (function)exp;
-		assertEquals(cf3.toString(),exp.toString());
-		assertTrue(cf3.equals(f2));
-
-
-
-
-	}
-
+	
 	@Test
 	void testMul() {
-
-
 		String s2 ="3x^2-10x+2";
 		ComplexFunction cf3 = new ComplexFunction("plus(2x^2,3x^2-5x+2)");
 
 		function f1 = cf3.initFromString(s2);
 		cf3.mul(f1);
 
-		ComplexFunction cf = new ComplexFunction(Operation.Times, new Polynom("plus(2x^2,3x^2-5x+2)"), new Polynom("3x^2-10x+2"));
+		ComplexFunction cf = new ComplexFunction(Operation.Times, new ComplexFunction("plus(2x^2,3x^2-5x+2)"), new Polynom("3x^2-10x+2"));
 		assertTrue(cf3.equals(cf));
 		assertEquals(cf3.toString(), cf.toString());
-
-
-
-
 	}
 
+	
 	@Test
 	void testDiv() {
-
-
 		String s = "x^2+3x-5";
 		ComplexFunction cf3 = new ComplexFunction("plus(2x^2-2x,3x^2)");
 
@@ -218,26 +160,21 @@ class ComplexFunctionTest {
 		ComplexFunction cf = new ComplexFunction(Operation.Divid, new ComplexFunction("plus(2x^2-2x,3x^2"), new Polynom("x^2+3x-5"));
 		assertTrue(cf3.equals(cf));
 		assertEquals(cf3.toString(), cf.toString());
-
-
 	}
+	
 
 	@Test
 	void testMax() {
-
 		String s2 ="-x^2";
-		ComplexFunction cf3 = new ComplexFunction("divide(2x^2,3x^2)");
-
+		ComplexFunction cf3 = new ComplexFunction("div(2x^2,3x^2)");
 		function f1 = cf3.initFromString(s2);
 		cf3.max(f1);
-		ComplexFunction cf = new ComplexFunction(Operation.Max, new ComplexFunction("divide(2x^2,3x^2)"), new Monom("-x^2"));
+		ComplexFunction cf = new ComplexFunction(Operation.Max, new ComplexFunction("div(2x^2,3x^2)"), new Monom("-x^2"));
 		assertTrue(cf3.equals(cf));
 		assertEquals(cf3.toString(), cf.toString());
-
-
-
 	}
 
+	
 	@Test
 	void testMin() {
 
