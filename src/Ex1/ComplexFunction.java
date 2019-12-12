@@ -46,6 +46,9 @@ public class ComplexFunction implements complex_function {
 
 
 	public ComplexFunction(String s) {
+		//		if((s.charAt(0) >= '0' && s.charAt(0) <= '9') || s.charAt(0) == 'x' || s.charAt(0) == '-' || s.charAt(0) == '+') {
+		//			this = new Polynom(s);
+		//		}
 		s = s.toLowerCase();
 		if(s.isEmpty()) {
 			return;
@@ -145,9 +148,6 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public double f(double x) {
-		//	if (left instanceof type) {
-		//		type new_name = (type) left;
-		//	}
 		double l = 0;
 		double r = 0;
 		if (this.right != null) {
@@ -190,10 +190,9 @@ public class ComplexFunction implements complex_function {
 		if (this.left != null && this.right != null) {
 			ans =  this.op.toString() + "(" + this.left.toString() + "," + this.right.toString() + ")";
 		}
-		if (this.left != null && this.right == null) {
-
+		if (this.right == null) {
+			ans = this.left.toString();
 		}
-
 		return ans;
 	}
 
@@ -282,5 +281,16 @@ public class ComplexFunction implements complex_function {
 		String s1 = this.toString();
 		String s2 = cf.toString();
 		return s1.equals(s2);
+	}
+
+
+	public boolean equalsIn(ComplexFunction cf, double start, double end,int steps) {
+		double plus = (start - end) / steps;
+		for (double i = start; i <= end; i = i + plus) {
+			if (!(this.f(i) == cf.f(i))) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
