@@ -46,7 +46,7 @@ public class ComplexFunction implements complex_function {
 
 
 	public ComplexFunction(String s) {
-		s.toLowerCase();
+		s = s.toLowerCase();
 		if(s.isEmpty()) {
 			return;
 		}
@@ -91,7 +91,10 @@ public class ComplexFunction implements complex_function {
 			func2 = func2 + s.charAt(i);
 		}
 		if (!func1.isEmpty()) {
-			if(func1.charAt(0) >= 'a' && func1.charAt(0) <= 'z' && func1.charAt(0) != 'x') {
+			if((func1.charAt(0) >= '0' && func1.charAt(0) <= '9') || func1.charAt(0) == 'x' || func1.charAt(0) == '-' || func1.charAt(0) == '+') {
+				if(func1.charAt(0) == '+') {
+					func1 = func1.substring(1);
+				}
 				this.left = new Polynom(func1);
 			}
 			else {
@@ -102,7 +105,10 @@ public class ComplexFunction implements complex_function {
 			this.left = null;
 		}
 		if (!func2.isEmpty()) {
-			if(func2.charAt(0) >= 'a' && func2.charAt(0) <= 'z' && func2.charAt(0) != 'x') {
+			if((func2.charAt(0) >= '0' && func2.charAt(0) <= '9') || func2.charAt(0) == 'x' || func2.charAt(0) == '-' || func2.charAt(0) == '+') {
+				if(func2.charAt(0) == '+') {
+					func2 = func2.substring(1);
+				}
 				this.right = new Polynom(func2);
 			}
 			else {
@@ -114,22 +120,23 @@ public class ComplexFunction implements complex_function {
 
 
 	public static Operation StringToOperation(String s) {
-		if (s.equals("Plus") || s.equals("plus")) {
+		s = s.toLowerCase();
+		if (s.equals("plus") || s.equals("add")) {
 			return  Operation.Plus;
 		}
-		else if (s.equals("Times") || s.equals("mul")) {
+		else if (s.equals("times") || s.equals("mul")) {
 			return Operation.Times;
 		}
-		else if (s.equals("div") || s.equals("Divide")) {
+		else if (s.equals("div") || s.equals("divide")) {
 			return Operation.Divid;
 		}
-		else if (s.equals("Max") || s.equals("max")) {
+		else if (s.equals("max")) {
 			return Operation.Max;
 		}
-		else if (s.equals("min") || s.equals("Min")) {
+		else if (s.equals("min")) {
 			return Operation.Min;
 		}
-		else if (s.equals("comp") || s.equals("Comp")) {
+		else if (s.equals("comp")) {
 			return Operation.Comp;
 		}
 		return Operation.None;
