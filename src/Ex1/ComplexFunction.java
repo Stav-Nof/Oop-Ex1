@@ -6,7 +6,6 @@ public class ComplexFunction implements complex_function {
 	Operation op;
 
 
-
 	public ComplexFunction() {
 		this.left = null;
 		this.right = null;
@@ -46,9 +45,6 @@ public class ComplexFunction implements complex_function {
 
 
 	public ComplexFunction(String s) {
-		//		if((s.charAt(0) >= '0' && s.charAt(0) <= '9') || s.charAt(0) == 'x' || s.charAt(0) == '-' || s.charAt(0) == '+') {
-		//			this = new Polynom(s);
-		//		}
 		s = s.toLowerCase();
 		if(s.isEmpty()) {
 			return;
