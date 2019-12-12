@@ -1,0 +1,1 @@
+[{"left":{},"right":{},"op":"Plus"},{"right":{},"op":"Plus"},{"left":{},"right":{},"op":"None"},{},{},{"left":{},"right":{},"op":"Max"},{"left":{},"right":{},"op":"Min"}]
