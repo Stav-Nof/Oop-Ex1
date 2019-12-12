@@ -19,6 +19,11 @@ import com.google.gson.Gson;
 
 import Ex1.StdDraw;
 
+/*
+ * This class implements the functions interface.
+ * It contains all the methods to draw the functions based on the classes we built before.
+ * The object "Functions_GUI" is composed by a LinkedList that contains functions and an array that contains colors.
+ */
 public class Functions_GUI implements functions {
 	private LinkedList<function> Functions;
 	public static Color[] Colors = {Color.blue, Color.cyan,
@@ -27,7 +32,9 @@ public class Functions_GUI implements functions {
 
 
 
-
+/*
+ * 
+ */
 	public Functions_GUI() {
 		Functions = new LinkedList<function>();
 	}
