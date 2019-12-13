@@ -26,12 +26,11 @@ import Ex1.StdDraw;
  */
 public class Functions_GUI implements functions {
 	private LinkedList<function> Functions;
-	public static Color[] Colors = {Color.blue, Color.cyan,
-			Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
+	
 
-
-
-
+	public static Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
+	
+	
 /*
  * 
  */
@@ -198,6 +197,19 @@ public class Functions_GUI implements functions {
         try {
         	BufferedReader buffer = new BufferedReader(new FileReader(file));
             while ((line = buffer.readLine()) != null) {
+            	int index = 0;
+            	int space = 0;
+            	while(index < line.length()) {
+            		if (line.charAt(index) == ' ') {
+            			space++;
+            		}
+            		if (space == 2) {
+            			index++;
+            			break;
+            		}
+            		index++;
+            	}
+            	line = line.substring(index);
     			if((line.charAt(0) >= '0' && line.charAt(0) <= '9') || line.charAt(0) == 'x' || line.charAt(0) == '-' || line.charAt(0) == '+') {
     				toAdd = new Polynom(line);
     			}
@@ -223,7 +235,11 @@ public class Functions_GUI implements functions {
 			PrintWriter pw = new PrintWriter(new File(file));
 			StringBuilder sb = new StringBuilder();
 			while(iter.hasNext()) {
-				sb.append(iter.next().toString());
+				function temp = iter.next();
+				int index = Functions.indexOf(temp);
+				sb.append(Colors[index%Colors.length].toString() + " ");
+				sb.append("f(x)= ");
+				sb.append(temp.toString());
 				sb.append("\n");
 			}
 			pw.write(sb.toString());
@@ -278,8 +294,9 @@ public class Functions_GUI implements functions {
 		Iterator<function> iterator = this.iterator();
 		double steps = sizX / resolution;
 		while(iterator.hasNext()) {
-			StdDraw.setPenColor(Colors[(int) (Math.random()*Colors.length)]);
 			function temp = iterator.next();
+			int index = Functions.indexOf(temp);
+			StdDraw.setPenColor(Colors[index%Colors.length]);
 			for(double i = minX; i <= maxX; i = i + steps) {
 				StdDraw.line(i, temp.f(i), i + steps, temp.f(i + steps));
 			}
