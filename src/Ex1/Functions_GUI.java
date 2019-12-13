@@ -33,13 +33,15 @@ public class Functions_GUI implements functions {
 
 
 /*
- * 
+ * Constructor that initializes an empty LinkedList.  
  */
 	public Functions_GUI() {
 		Functions = new LinkedList<function>();
 	}
 
-
+/*
+ * Constructor that adds a function to a LinkedList of type function.
+ */
 	public Functions_GUI(function e) {
 		if (Functions == null) {
 			Functions = new LinkedList<function>();
@@ -47,32 +49,48 @@ public class Functions_GUI implements functions {
 		Functions.add(e);
 	}
 
-
+/*
+ * Implements the size function from functions interface.
+ * Returns the size of the LinkedList.
+ */
 	@Override
 	public int size() {
 		return Functions.size();
 	}
 
-
+/*
+ * Implements the isEmpty function from functions interface.
+ * Returns true if the LinkedList is Empty, false if the LinkedList is contains elements.
+ */
 	@Override
 	public boolean isEmpty() {
 		return Functions.isEmpty();
 	}
 
-
+/*
+ * Implements the contains function from functions interface.
+ * Returns true if the LinkedList contains the specified object, returns false if not.
+ */
 	@Override
 	public boolean contains(Object o) {
 		return Functions.contains(o);
 	}
 
-
+/*
+ * Implements the iterator function from functions interface.
+ * Initialize an iterator that aims to traverse through this collection.
+ */
 	@Override
 	public Iterator<function> iterator() {
 		Iterator<function> iterator = this.Functions.iterator();
 		return iterator;
 	}
 
-
+/*
+ * Implements the toArray function from functions interface.
+ * Turns a collection into an Array of type function.
+ * Returns an array containing all of the elements of this collection.
+ */
 	@Override
 	public Object[] toArray() {
 		function[] ans = new function[this.size()];
@@ -95,13 +113,20 @@ public class Functions_GUI implements functions {
 		return a;
 	}
 
-
+/*
+ * This function is checking whether or not the collections contains the specified element.
+ * Returns true if it, false if it's not.
+ */
 	@Override
 	public boolean add(function e) {
 		return this.Functions.add(e);
 	}
 
-
+/*
+ * This function is removing a single object from this collection.
+ * If the collection has changed after the process, the function returns true, if the collection 
+ * didn't change, the function returns false.
+ */
 	@Override
 	public boolean remove(Object o) {
 		Iterator<function> iterator = this.iterator();
@@ -114,7 +139,16 @@ public class Functions_GUI implements functions {
 		}
 		return false;
 	}
+	
+	
 
+/*
+ * This function is checking if this Collection is containing all of the elements of the specified collection.
+ * By iterating on both of those collections the functions is comparing between the elements of those collections
+ * and is checking them one by one. If at least one element of one the collections is not included in the other, the function
+ * returns false.
+ * On the contrary, if this collections contains all of the objects of the specified collection, the function returns true. 
+ */
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		if(this.size() < c.size()) {
@@ -139,13 +173,22 @@ public class Functions_GUI implements functions {
 		return true;
 	}
 
-
+/*
+ * This function adds all of the elements of the specified collection to this collection by using the 
+ * built-in function addAll from LinkedList.
+ */
 	@Override
 	public boolean addAll(Collection<? extends function> c) {
 		return this.Functions.addAll(c);
 	}
 
-
+/*
+ * Remove all of the elements on this collections that are contained in the specified collection.
+ * The functions is running through the specified collection and by using the remove function above, 
+ * the function is checking objects one by one. If both of the collections have elements in common, the 
+ * remove function above will remove them one by one.
+ * Returns true if the two collections have no common elements, false if the collection did not change.
+ */
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		boolean flag = false;
@@ -161,6 +204,14 @@ public class Functions_GUI implements functions {
 	}
 
 
+/*
+ * Retains only the elements of this collection that are contained in the specified collection.
+ * Iterates on the collections and check if they have different elements. 
+ * The function is checking if the objects of this collection are equal to the elements of the specified collection.
+ * If one of them is not in the specified collection, the function will remove it from this collection by using the
+ * remove function above.
+ * 
+ */
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		boolean flag = false;
