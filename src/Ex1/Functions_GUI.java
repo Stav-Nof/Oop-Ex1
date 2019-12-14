@@ -26,14 +26,14 @@ import Ex1.StdDraw;
  */
 public class Functions_GUI implements functions {
 	private LinkedList<function> Functions;
-	
+
 
 	public static Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
-	
-	
-/*
- * 
- */
+
+
+	/*
+	 * 
+	 */
 	public Functions_GUI() {
 		Functions = new LinkedList<function>();
 	}
@@ -74,24 +74,13 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public Object[] toArray() {
-		function[] ans = new function[this.size()];
-		this.toArray(ans);
-		return ans;
+		return Functions.toArray();
 	}
 
 
 	@Override
 	public <T> T[] toArray(T[] a) {
-		if(a.length < this.size()) {
-			throw new RuntimeException("The given array is to small");
-		}
-		int i = 0;
-		Iterator<function> iterator = this.iterator();
-		while(iterator.hasNext()) {
-			ComplexFunction temp = (ComplexFunction) iterator.next().copy();
-			a[i] = (T) temp;
-		}
-		return a;
+		return Functions.toArray(a);
 	}
 
 
@@ -103,39 +92,12 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public boolean remove(Object o) {
-		Iterator<function> iterator = this.iterator();
-		while(iterator.hasNext()) {
-			function thiso = iterator.next();
-			if (thiso.equals(o)) {
-				this.Functions.remove(thiso);
-				return true;
-			}
-		}
-		return false;
+		return Functions.remove(o);
 	}
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		if(this.size() < c.size()) {
-			return false;
-		}
-		Iterator<function> thisIterator = this.iterator();
-		Iterator<?> cIterator = c.iterator();
-		while(cIterator.hasNext()) {
-			boolean flag = false;
-			Object co = cIterator.next();
-			while(thisIterator.hasNext()) {
-				Object thiso = thisIterator.next();
-				if(co.equals(thiso)) {
-					flag = true;
-					break;
-				}
-			}
-			if (!flag) {
-				return false;
-			}
-		}
-		return true;
+		return Functions.containsAll(c);
 	}
 
 
@@ -147,40 +109,13 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		boolean flag = false;
-		Iterator<?> cIterator = c.iterator();
-		while(cIterator.hasNext()) {
-			function cFunction = (function) cIterator.next();
-			boolean temp = this.remove(cFunction);
-			if (temp) {
-				flag = true;
-			}
-		}
-		return flag;
+		return Functions.removeAll(c);
 	}
 
 
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		boolean flag = false;
-		Iterator<function> thisIterator = this.iterator();
-		while (thisIterator.hasNext()) {
-			function thisFunction = thisIterator.next();
-			Iterator<?> cIterator = c.iterator();
-			boolean inC = false;
-			while(cIterator.hasNext()) {
-				function cFunction = (function) cIterator.next();
-				if(thisFunction.equals(cFunction)) {
-					inC = true;
-					break;
-				}
-			}
-			if (inC) {
-				this.remove(thisFunction);
-				flag = true;
-			}
-		}
-		return flag;
+		return Functions.retainAll(c);
 	}
 
 
@@ -190,41 +125,71 @@ public class Functions_GUI implements functions {
 	}
 
 
+	/*
+	 * Compares between this Functions_GUI and another given Functions_GUI.
+	 * Returns true or false.
+	 */
+	public boolean equals(Functions_GUI fg) {
+		if(this.toString().equals(fg.toString())) {
+			return true;
+		}
+		return false;
+	}
+
+
+	public String toString() {
+		String ans = "";
+		Iterator iterator = this.iterator();
+		while(iterator.hasNext()) {
+			function temp = (function) iterator.next();
+			ans = ans + "[" + temp.toString() + "]";
+			if(iterator.hasNext()) {
+				ans = ans + ", ";
+			}
+		}
+		return ans;
+	}
+
+
 	@Override
 	public void initFromFile(String file) throws IOException {
-        String line = "";
-        function toAdd = null;
-        try {
-        	BufferedReader buffer = new BufferedReader(new FileReader(file));
-            while ((line = buffer.readLine()) != null) {
-            	int index = 0;
-            	int space = 0;
-            	while(index < line.length()) {
-            		if (line.charAt(index) == ' ') {
-            			space++;
-            		}
-            		if (space == 2) {
-            			index++;
-            			break;
-            		}
-            		index++;
-            	}
-            	line = line.substring(index);
-    			if((line.charAt(0) >= '0' && line.charAt(0) <= '9') || line.charAt(0) == 'x' || line.charAt(0) == '-' || line.charAt(0) == '+') {
-    				toAdd = new Polynom(line);
-    			}
-    			else {
-    				toAdd = new ComplexFunction(line);
-    			}
-    			this.add(toAdd);
-            }
+		if (this.Functions == null) {
+			Functions_GUI temp = new Functions_GUI();
+			this.Functions = temp.Functions;
+		}
+		String line = "";
+		function toAdd = null;
+		try {
+			BufferedReader buffer = new BufferedReader(new FileReader(file));
+			while ((line = buffer.readLine()) != null) {
+				int index = 0;
+				int space = 0;
+				while(index < line.length()) {
+					if (line.charAt(index) == ' ') {
+						space++;
+					}
+					if (space == 2) {
+						index++;
+						break;
+					}
+					index++;
+				}
+				line = line.substring(index);
+				if((line.charAt(0) >= '0' && line.charAt(0) <= '9') || line.charAt(0) == 'x' || line.charAt(0) == '-' || line.charAt(0) == '+') {
+					toAdd = new Polynom(line);
+				}
+				else {
+					toAdd = new ComplexFunction(line);
+				}
+				this.add(toAdd);
+			}
 
-        } 
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-            System.out.println("could not read file");
-        }
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+			System.out.println("could not read file");
+		}
 	}
 
 
@@ -318,8 +283,8 @@ public class Functions_GUI implements functions {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	class GUI_params{
 		public int Width;
 		public int Height;

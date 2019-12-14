@@ -1,5 +1,10 @@
 package Ex1Testing;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +37,7 @@ import Ex1.functions;
 class Functions_GUITest {
 	public static void main(String[] a) {
 		functions data = FunctionsFactory();
+
 		int w=1000, h=600, res=200;
 		Range rx = new Range(-10,10);
 		Range ry = new Range(-5,15);
@@ -48,6 +54,7 @@ class Functions_GUITest {
 
 		String JSON_param_file = "GUI_params.txt";
 		data.drawFunctions(JSON_param_file);
+
 	}
 	private functions _data=null;
 	//	@BeforeAll
@@ -57,28 +64,6 @@ class Functions_GUITest {
 	@BeforeEach
 	void setUp() throws Exception {
 		_data = FunctionsFactory();
-	}
-
-	//@Test
-	void testFunctions_GUI() {
-		//	fail("Not yet implemented");
-	}
-
-	//@Test
-	void testInitFromFile() {
-		//	fail("Not yet implemented");
-	}
-
-	//@Test
-	void testSaveToFile() {
-
-
-	}
-
-	//@Test
-	void testDrawFunctions() {
-		//_data.drawFunctions();
-		//	fail("Not yet implemented");
 	}
 
 	@Test
@@ -124,4 +109,63 @@ class Functions_GUITest {
 		ans.add(min);		
 		return ans;
 	}
+
+	/////////////////////Our tests/////////////////////
+
+	
+	@Test
+	void testEquals() {
+		functions f1 = FunctionsFactory();
+		Functions_GUI fg1 = new Functions_GUI();
+		Functions_GUI fg2 = new Functions_GUI();
+		Polynom temp = new Polynom("x^2");
+		try {
+			f1.saveToFile("test.txt");
+			fg1.initFromFile("test.txt");
+			fg2.initFromFile("test.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		fg1.equals(fg2);
+		assertTrue(fg1.equals(fg2));
+		fg2.add(temp);
+		assertFalse(fg1.equals(fg2));
+	}
+	
+	
+	@Test
+	void testInitFromFileAndSaveToFile() {
+		Functions_GUI actual = new Functions_GUI();
+		Functions_GUI expected = new Functions_GUI();
+		Monom m = new Monom("-x^2");
+		actual.add(m);
+		try {
+			actual.saveToFile("test1.txt");
+			expected.initFromFile("test1.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assertTrue(expected.equals(actual));
+		expected = new Functions_GUI();
+		Polynom p = new Polynom("-x^2+5x");
+		actual.add(p);
+		try {
+			actual.saveToFile("test2.txt");
+			expected.initFromFile("test2.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assertTrue(expected.equals(actual));
+		expected = new Functions_GUI();
+		ComplexFunction cf = new ComplexFunction("add(x^2+3x+1,5x^8");
+		actual.add(cf);
+		try {
+			actual.saveToFile("test3.txt");
+			expected.initFromFile("test3.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		assertTrue(expected.equals(actual));
+	}
+
 }
