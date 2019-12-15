@@ -26,21 +26,22 @@ import Ex1.StdDraw;
  */
 public class Functions_GUI implements functions {
 	private LinkedList<function> Functions;
-	
+
 
 	public static Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
-	
-	
-/*
- * Constructor that initializes an empty LinkedList.  
- */
+
+
+	/*
+	 * Constructor that initializes an empty LinkedList.  
+	 */
+
 	public Functions_GUI() {
 		Functions = new LinkedList<function>();
 	}
 
-/*
- * Constructor that adds a function to a LinkedList of type function.
- */
+	/*
+	 * Constructor that adds a function to a LinkedList of type function.
+	 */
 	public Functions_GUI(function e) {
 		if (Functions == null) {
 			Functions = new LinkedList<function>();
@@ -48,237 +49,219 @@ public class Functions_GUI implements functions {
 		Functions.add(e);
 	}
 
-/*
- * Implements the size function from functions interface.
- * Returns the size of the LinkedList.
- */
+	/*
+	 * Implements the size function from functions interface.
+	 * Returns the size of the LinkedList.
+	 */
 	@Override
 	public int size() {
 		return Functions.size();
 	}
 
-/*
- * Implements the isEmpty function from functions interface.
- * Returns true if the LinkedList is Empty, false if the LinkedList is contains elements.
- */
+	/*
+	 * Implements the isEmpty function from functions interface.
+	 * Returns true if the LinkedList is Empty, false if the LinkedList is contains elements.
+	 */
 	@Override
 	public boolean isEmpty() {
 		return Functions.isEmpty();
 	}
 
-/*
- * Implements the contains function from functions interface.
- * Returns true if the LinkedList contains the specified object, returns false if not.
- */
+	/*
+	 * Implements the contains function from functions interface.
+	 * Returns true if the LinkedList contains the specified object, returns false if not.
+	 */
 	@Override
 	public boolean contains(Object o) {
 		return Functions.contains(o);
 	}
 
-/*
- * Implements the iterator function from functions interface.
- * Initialize an iterator that aims to traverse through this collection.
- */
+	/*
+	 * Implements the iterator function from functions interface.
+	 * Initialize an iterator that aims to traverse through this collection.
+	 */
 	@Override
 	public Iterator<function> iterator() {
 		Iterator<function> iterator = this.Functions.iterator();
 		return iterator;
 	}
 
-/*
- * Implements the toArray function from functions interface.
- * Turns a collection into an Array of type function.
- * Returns an array containing all of the elements of this collection.
- */
+	/*
+	 * Implements the toArray function from functions interface.
+	 * Turns a collection into an Array of type function.
+	 * Returns an array containing all of the elements of this collection.
+	 */
 	@Override
 	public Object[] toArray() {
-		function[] ans = new function[this.size()];
-		this.toArray(ans);
-		return ans;
+		return Functions.toArray();
 	}
 
 
 	@Override
 	public <T> T[] toArray(T[] a) {
-		if(a.length < this.size()) {
-			throw new RuntimeException("The given array is to small");
-		}
-		int i = 0;
-		Iterator<function> iterator = this.iterator();
-		while(iterator.hasNext()) {
-			ComplexFunction temp = (ComplexFunction) iterator.next().copy();
-			a[i] = (T) temp;
-		}
-		return a;
+		return Functions.toArray(a);
 	}
 
-/*
- * This function is checking whether or not the collections contains the specified element.
- * Returns true if it, false if it's not.
- */
+	/*
+	 * This function is checking whether or not the collections contains the specified element.
+	 * Returns true if it, false if it's not.
+	 */
 	@Override
 	public boolean add(function e) {
 		return this.Functions.add(e);
 	}
 
-/*
- * This function is removing a single object from this collection.
- * If the collection has changed after the process, the function returns true, if the collection 
- * didn't change, the function returns false.
- */
+	/*
+	 * This function is removing a single object from this collection.
+	 * If the collection has changed after the process, the function returns true, if the collection 
+	 * didn't change, the function returns false.
+	 */
 	@Override
 	public boolean remove(Object o) {
-		Iterator<function> iterator = this.iterator();
-		while(iterator.hasNext()) {
-			function thiso = iterator.next();
-			if (thiso.equals(o)) {
-				this.Functions.remove(thiso);
-				return true;
-			}
-		}
-		return false;
+		return Functions.remove(o);
 	}
-	
-	
 
-/*
- * This function is checking if this Collection is containing all of the elements of the specified collection.
- * By iterating on both of those collections the functions is comparing between the elements of those collections
- * and is checking them one by one. If at least one element of one the collections is not included in the other, the function
- * returns false.
- * On the contrary, if this collections contains all of the objects of the specified collection, the function returns true. 
- */
+
+
+	/*
+	 * This function is checking if this Collection is containing all of the elements of the specified collection.
+	 * By iterating on both of those collections the functions is comparing between the elements of those collections
+	 * and is checking them one by one. If at least one element of one the collections is not included in the other, the function
+	 * returns false.
+	 * On the contrary, if this collections contains all of the objects of the specified collection, the function returns true. 
+	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		if(this.size() < c.size()) {
-			return false;
-		}
-		Iterator<function> thisIterator = this.iterator();
-		Iterator<?> cIterator = c.iterator();
-		while(cIterator.hasNext()) {
-			boolean flag = false;
-			Object co = cIterator.next();
-			while(thisIterator.hasNext()) {
-				Object thiso = thisIterator.next();
-				if(co.equals(thiso)) {
-					flag = true;
-					break;
-				}
-			}
-			if (!flag) {
-				return false;
-			}
-		}
-		return true;
+		return Functions.containsAll(c);
 	}
 
-/*
- * This function adds all of the elements of the specified collection to this collection by using the 
- * built-in function addAll from LinkedList.
- */
+	/*
+	 * This function adds all of the elements of the specified collection to this collection by using the 
+	 * built-in function addAll from LinkedList.
+	 */
 	@Override
 	public boolean addAll(Collection<? extends function> c) {
 		return this.Functions.addAll(c);
 	}
 
-/*
- * Remove all of the elements on this collections that are contained in the specified collection.
- * The functions is running through the specified collection and by using the remove function above, 
- * the function is checking objects one by one. If both of the collections have elements in common, the 
- * remove function above will remove them one by one.
- * Returns true if the two collections have no common elements, false if the collection did not change.
- */
+	/*
+	 * Remove all of the elements on this collections that are contained in the specified collection.
+	 * The functions is running through the specified collection and by using the remove function above, 
+	 * the function is checking objects one by one. If both of the collections have elements in common, the 
+	 * remove function above will remove them one by one.
+	 * Returns true if the two collections have no common elements, false if the collection did not change.
+	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		boolean flag = false;
-		Iterator<?> cIterator = c.iterator();
-		while(cIterator.hasNext()) {
-			function cFunction = (function) cIterator.next();
-			boolean temp = this.remove(cFunction);
-			if (temp) {
-				flag = true;
-			}
-		}
-		return flag;
+		return Functions.removeAll(c);
 	}
 
 
-/*
- * Retains only the elements of this collection that are contained in the specified collection.
- * Iterates on the collections and check if they have different elements. 
- * The function is checking if the objects of this collection are equal to the elements of the specified collection.
- * If one of them is not in the specified collection, the function will remove it from this collection by using the
- * remove function above.
- * 
- */
+	/*
+	 * Retains only the elements of this collection that are contained in the specified collection.
+	 * Iterates on the collections and check if they have different elements. 
+	 * The function is checking if the objects of this collection are equal to the elements of the specified collection.
+	 * If one of them is not in the specified collection, the function will remove it from this collection by using the
+	 * remove function above.
+	 * 
+	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		boolean flag = false;
-		Iterator<function> thisIterator = this.iterator();
-		while (thisIterator.hasNext()) {
-			function thisFunction = thisIterator.next();
-			Iterator<?> cIterator = c.iterator();
-			boolean inC = false;
-			while(cIterator.hasNext()) {
-				function cFunction = (function) cIterator.next();
-				if(thisFunction.equals(cFunction)) {
-					inC = true;
-					break;
-				}
-			}
-			if (inC) {
-				this.remove(thisFunction);
-				flag = true;
-			}
-		}
-		return flag;
+		return Functions.retainAll(c);
 	}
 
-
+	/*
+	 * This function clears all of the elements of this collection by using the clear function of LinkedList.
+	 */
 	@Override
 	public void clear() {
 		this.Functions.clear();
 	}
 
 
-	@Override
-	public void initFromFile(String file) throws IOException {
-        String line = "";
-        function toAdd = null;
-        try {
-        	BufferedReader buffer = new BufferedReader(new FileReader(file));
-            while ((line = buffer.readLine()) != null) {
-            	int index = 0;
-            	int space = 0;
-            	while(index < line.length()) {
-            		if (line.charAt(index) == ' ') {
-            			space++;
-            		}
-            		if (space == 2) {
-            			index++;
-            			break;
-            		}
-            		index++;
-            	}
-            	line = line.substring(index);
-    			if((line.charAt(0) >= '0' && line.charAt(0) <= '9') || line.charAt(0) == 'x' || line.charAt(0) == '-' || line.charAt(0) == '+') {
-    				toAdd = new Polynom(line);
-    			}
-    			else {
-    				toAdd = new ComplexFunction(line);
-    			}
-    			this.add(toAdd);
-            }
-
-        } 
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-            System.out.println("could not read file");
-        }
+	/*
+	 * Compares between this Functions_GUI and another given Functions_GUI.
+	 * Returns true or false.
+	 */
+	public boolean equals(Functions_GUI fg) {
+		if(this.toString().equals(fg.toString())) {
+			return true;
+		}
+		return false;
 	}
 
+	/*
+	 * Turns this collection into a String by using an Iterator that will traverse the collection.
+	 * While the collection has another element, the function is creating a temporary function and turns it into a String 
+	 * by using the toString function from the "function interface".
+	 */
+	public String toString() {
+		String ans = "";
+		Iterator iterator = this.iterator();
+		while(iterator.hasNext()) {
+			function temp = (function) iterator.next();
+			ans = ans + "[" + temp.toString() + "]";
+			if(iterator.hasNext()) {
+				ans = ans + ", ";
+			}
+		}
+		return ans;
+	}
 
+	/*
+	 * Initialize a collection of function from a file.
+	 * Using BufferReader class, the buffer is reading from a file and while the buffer is reading a String that is not null, 
+	 * the buffer is turning the file into a String, and this String is sent to the ComplexFunction constructor to build the function.
+	 * Throws an Exception if the function can't read the file.
+	 */
+	@Override
+	public void initFromFile(String file) throws IOException {
+		if (this.Functions == null) {
+			Functions_GUI temp = new Functions_GUI();
+			this.Functions = temp.Functions;
+		}
+		String line = "";
+		function toAdd = null;
+		try {
+			BufferedReader buffer = new BufferedReader(new FileReader(file));
+			while ((line = buffer.readLine()) != null) {
+				int index = 0;
+				int space = 0;
+				while(index < line.length()) {
+					if (line.charAt(index) == ' ') {
+						space++;
+					}
+					if (space == 2) {
+						index++;
+						break;
+					}
+					index++;
+				}
+				line = line.substring(index);
+				if((line.charAt(0) >= '0' && line.charAt(0) <= '9') || line.charAt(0) == 'x' || line.charAt(0) == '-' || line.charAt(0) == '+') {
+					toAdd = new Polynom(line);
+				}
+				else {
+					toAdd = new ComplexFunction(line);
+				}
+				this.add(toAdd);
+			}
+
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+			System.out.println("could not read file");
+		}
+	}
+
+	/*
+	 * This function is creating an Iterator and runs through the the collection.
+	 * By creating a StringBuilder , the function is adding Strings of different lengths and saves all of the characteristics of 
+	 * the given collection.
+	 * Finally the function is writing the Strings into a file.
+	 * If the function can't write to this file, it throws an Exception.
+	 */
 	@Override
 	public void saveToFile(String file) throws IOException {
 		Iterator<function> iter = this.iterator();
@@ -369,8 +352,8 @@ public class Functions_GUI implements functions {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	class GUI_params{
 		public int Width;
 		public int Height;
