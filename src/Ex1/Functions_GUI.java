@@ -32,7 +32,7 @@ public class Functions_GUI implements functions {
 
 
 	/*
-	 * Constructor that initializes an empty LinkedList.  
+	 * Constructor that initializes an empty LinkedList.   
 	 */
 
 	public Functions_GUI() {
