@@ -286,7 +286,13 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-
+/*
+ * This function is drawing all the functions that are contained is this collection.
+ * In this function, the Graphic Interface is created, the range for x and y and also the resolution are part 
+ * of this creation.
+ * To make the interface more interactive and precise we also use colors for each function that we draw.
+ * An iterator traverses the collection and draws every function according to its standards.
+ */
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 		StdDraw.setCanvasSize(width, height);
@@ -337,7 +343,11 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-
+/*
+ * This function is trying to draw a function by reading from a JSon File.
+ * If it succeed, the data is transfered to the drawFunction just above. If not, the function will
+ * throw an exception.
+ */
 	@Override
 	public void drawFunctions(String json_file) {
 		try {
@@ -353,7 +363,12 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-
+/*
+ * A class that contains the parameters in order to draw a Function. In fact, we need the height, the 
+ * width and the resolution of our Window, where the function will be drawn and.
+ * We also need a range of values for x and y.
+ * 
+ */
 	class GUI_params{
 		public int Width;
 		public int Height;
