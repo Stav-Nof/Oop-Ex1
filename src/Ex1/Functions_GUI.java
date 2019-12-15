@@ -51,7 +51,8 @@ public class Functions_GUI implements functions {
 
 	/*
 	 * Implements the size function from functions interface.
-	 * Returns the size of the LinkedList.
+	 * Returns the size of the LinkedList by using the size function from the LinkedList class.
+	 * 
 	 */
 	@Override
 	public int size() {
@@ -60,7 +61,8 @@ public class Functions_GUI implements functions {
 
 	/*
 	 * Implements the isEmpty function from functions interface.
-	 * Returns true if the LinkedList is Empty, false if the LinkedList is contains elements.
+	 * Returns true if the LinkedList is Empty, false if the LinkedList is containing elements.
+	 * using the isEmpty function from the LinkedList class.
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -70,6 +72,7 @@ public class Functions_GUI implements functions {
 	/*
 	 * Implements the contains function from functions interface.
 	 * Returns true if the LinkedList contains the specified object, returns false if not.
+	 * using the contains function from the LinkedList class.
 	 */
 	@Override
 	public boolean contains(Object o) {
@@ -90,13 +93,15 @@ public class Functions_GUI implements functions {
 	 * Implements the toArray function from functions interface.
 	 * Turns a collection into an Array of type function.
 	 * Returns an array containing all of the elements of this collection.
+	 * using the toArray function from the LinkedList class.
 	 */
 	@Override
 	public Object[] toArray() {
 		return Functions.toArray();
 	}
 
-
+	
+	
 	@Override
 	public <T> T[] toArray(T[] a) {
 		return Functions.toArray(a);
@@ -296,8 +301,8 @@ public class Functions_GUI implements functions {
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 		StdDraw.setCanvasSize(width, height);
-		double minX = rx.get_min(), maxX = rx.get_max(),sizX = maxX - minX;
-		double minY = ry.get_min(), maxY = ry.get_max(),sizY = maxY - minY;
+		double minX = rx.get_min(), maxX = rx.get_max(),sizX = Math.abs(maxX - minX);
+		double minY = ry.get_min(), maxY = ry.get_max(),sizY = Math.abs(maxY - minY);
 		StdDraw.setXscale(minX, maxX);
 		StdDraw.setYscale(minY, maxY);
 		StdDraw.setPenColor(Color.LIGHT_GRAY);
@@ -305,13 +310,13 @@ public class Functions_GUI implements functions {
 		int vertical = (int) minX;
 		for (int i = 0; i <= sizX; i++) {
 			StdDraw.line(vertical, minY, vertical, maxY);
-			vertical = (int) (vertical + (sizX / sizX));
+			vertical++;
 		}
 		//horizontal  lines
 		int horizontal = (int) minY;
 		for (double i = 0; i <= sizY; i++) {
 			StdDraw.line(minX, horizontal, maxX, horizontal);
-			horizontal = (int) (horizontal + (sizY / sizY));
+			horizontal++;
 		}
 		//x axis
 		vertical = (int) minX;
