@@ -1,6 +1,6 @@
 OOP assignment Readme- Ex1
 
-The project is about implement four classes, each one represents mathematical expressions, calculations and logical methods between them.
+The project is about implement four classes. Monon, Polynom and ComplexFunction represents mathematical expressions, calculations and logical methods between them. the class Function_GUI contains all the methods to draw the functions based on the classes we built and implement before.
 
 1)	Monom (Monomial) - A class represents an object defined by the structure a*x^b. in our case ‘a’ is a real number 
 and ‘b’ is a natural number (if there is no 'a' or 'b' we are assuming that it equals to 1).
