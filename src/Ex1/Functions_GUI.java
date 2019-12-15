@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 
 import Ex1.StdDraw;
 
-/*
+/**
  * This class implements the functions interface.
  * It contains all the methods to draw the functions based on the classes we built before.
  * The object "Functions_GUI" is composed by a LinkedList that contains functions and an array that contains colors.
@@ -31,7 +31,7 @@ public class Functions_GUI implements functions {
 	public static Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK};
 
 
-	/*
+	/**
 	 * Constructor that initializes an empty LinkedList.   
 	 */
 
@@ -39,8 +39,9 @@ public class Functions_GUI implements functions {
 		Functions = new LinkedList<function>();
 	}
 
-	/*
+	/**
 	 * Constructor that adds a function to a LinkedList of type function.
+	 * @param e
 	 */
 	public Functions_GUI(function e) {
 		if (Functions == null) {
@@ -49,7 +50,7 @@ public class Functions_GUI implements functions {
 		Functions.add(e);
 	}
 
-	/*
+	/**
 	 * Implements the size function from functions interface.
 	 * Returns the size of the LinkedList.
 	 */
@@ -58,7 +59,7 @@ public class Functions_GUI implements functions {
 		return Functions.size();
 	}
 
-	/*
+	/**
 	 * Implements the isEmpty function from functions interface.
 	 * Returns true if the LinkedList is Empty, false if the LinkedList is contains elements.
 	 */
@@ -67,16 +68,17 @@ public class Functions_GUI implements functions {
 		return Functions.isEmpty();
 	}
 
-	/*
+	/**
 	 * Implements the contains function from functions interface.
 	 * Returns true if the LinkedList contains the specified object, returns false if not.
+	 * @param o
 	 */
 	@Override
 	public boolean contains(Object o) {
 		return Functions.contains(o);
 	}
 
-	/*
+	/**
 	 * Implements the iterator function from functions interface.
 	 * Initialize an iterator that aims to traverse through this collection.
 	 */
@@ -86,7 +88,7 @@ public class Functions_GUI implements functions {
 		return iterator;
 	}
 
-	/*
+	/**
 	 * Implements the toArray function from functions interface.
 	 * Turns a collection into an Array of type function.
 	 * Returns an array containing all of the elements of this collection.
@@ -96,25 +98,32 @@ public class Functions_GUI implements functions {
 		return Functions.toArray();
 	}
 
-
+	/**
+	 * Implements the toArray function from functions interface.
+	 * Turns a collection into a given array of type function.
+	 * Returns an array containing all of the elements of this collection.
+	 * @param a
+	 */
 	@Override
 	public <T> T[] toArray(T[] a) {
 		return Functions.toArray(a);
 	}
 
-	/*
+	/**
 	 * This function is checking whether or not the collections contains the specified element.
 	 * Returns true if it, false if it's not.
+	 * @param e
 	 */
 	@Override
 	public boolean add(function e) {
 		return this.Functions.add(e);
 	}
 
-	/*
+	/**
 	 * This function is removing a single object from this collection.
 	 * If the collection has changed after the process, the function returns true, if the collection 
 	 * didn't change, the function returns false.
+	 * @param o
 	 */
 	@Override
 	public boolean remove(Object o) {
@@ -123,33 +132,36 @@ public class Functions_GUI implements functions {
 
 
 
-	/*
+	/**
 	 * This function is checking if this Collection is containing all of the elements of the specified collection.
 	 * By iterating on both of those collections the functions is comparing between the elements of those collections
 	 * and is checking them one by one. If at least one element of one the collections is not included in the other, the function
 	 * returns false.
 	 * On the contrary, if this collections contains all of the objects of the specified collection, the function returns true. 
+	 * @param c
 	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		return Functions.containsAll(c);
 	}
 
-	/*
+	/**
 	 * This function adds all of the elements of the specified collection to this collection by using the 
 	 * built-in function addAll from LinkedList.
+	 * @param c
 	 */
 	@Override
 	public boolean addAll(Collection<? extends function> c) {
 		return this.Functions.addAll(c);
 	}
 
-	/*
+	/**
 	 * Remove all of the elements on this collections that are contained in the specified collection.
 	 * The functions is running through the specified collection and by using the remove function above, 
 	 * the function is checking objects one by one. If both of the collections have elements in common, the 
 	 * remove function above will remove them one by one.
 	 * Returns true if the two collections have no common elements, false if the collection did not change.
+	 * @param c
 	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
@@ -157,20 +169,20 @@ public class Functions_GUI implements functions {
 	}
 
 
-	/*
+	/**
 	 * Retains only the elements of this collection that are contained in the specified collection.
 	 * Iterates on the collections and check if they have different elements. 
 	 * The function is checking if the objects of this collection are equal to the elements of the specified collection.
 	 * If one of them is not in the specified collection, the function will remove it from this collection by using the
 	 * remove function above.
-	 * 
+	 * @param c
 	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
 		return Functions.retainAll(c);
 	}
 
-	/*
+	/**
 	 * This function clears all of the elements of this collection by using the clear function of LinkedList.
 	 */
 	@Override
@@ -179,9 +191,11 @@ public class Functions_GUI implements functions {
 	}
 
 
-	/*
+	/**
 	 * Compares between this Functions_GUI and another given Functions_GUI.
 	 * Returns true or false.
+	 * @param fg
+	 * @return boolean
 	 */
 	public boolean equals(Functions_GUI fg) {
 		if(this.toString().equals(fg.toString())) {
@@ -190,10 +204,11 @@ public class Functions_GUI implements functions {
 		return false;
 	}
 
-	/*
+	/**
 	 * Turns this collection into a String by using an Iterator that will traverse the collection.
 	 * While the collection has another element, the function is creating a temporary function and turns it into a String 
 	 * by using the toString function from the "function interface".
+	 * @return ans
 	 */
 	public String toString() {
 		String ans = "";
@@ -208,11 +223,13 @@ public class Functions_GUI implements functions {
 		return ans;
 	}
 
-	/*
+	/**
 	 * Initialize a collection of function from a file.
 	 * Using BufferReader class, the buffer is reading from a file and while the buffer is reading a String that is not null, 
 	 * the buffer is turning the file into a String, and this String is sent to the ComplexFunction constructor to build the function.
 	 * Throws an Exception if the function can't read the file.
+	 * @param file
+	 * @throws printstackTrace
 	 */
 	@Override
 	public void initFromFile(String file) throws IOException {
@@ -255,12 +272,15 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-	/*
+	/**
 	 * This function is creating an Iterator and runs through the the collection.
 	 * By creating a StringBuilder , the function is adding Strings of different lengths and saves all of the characteristics of 
 	 * the given collection.
 	 * Finally the function is writing the Strings into a file.
 	 * If the function can't write to this file, it throws an Exception.
+	 * @param file
+	 * @throws exception
+	 * @return
 	 */
 	@Override
 	public void saveToFile(String file) throws IOException {
@@ -286,12 +306,17 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-/*
+/**
  * This function is drawing all the functions that are contained is this collection.
  * In this function, the Graphic Interface is created, the range for x and y and also the resolution are part 
  * of this creation.
  * To make the interface more interactive and precise we also use colors for each function that we draw.
  * An iterator traverses the collection and draws every function according to its standards.
+ * @param width
+ * @param height
+ * @param rx
+ * @param ry
+ * @param resolution
  */
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
@@ -343,10 +368,11 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-/*
+/**
  * This function is trying to draw a function by reading from a JSon File.
  * If it succeed, the data is transfered to the drawFunction just above. If not, the function will
  * throw an exception.
+ * @param json_file
  */
 	@Override
 	public void drawFunctions(String json_file) {
@@ -363,10 +389,10 @@ public class Functions_GUI implements functions {
 		}
 	}
 
-/*
- * A class that contains the parameters in order to draw a Function. In fact, we need the height, the 
- * width and the resolution of our Window, where the function will be drawn and.
- * We also need a range of values for x and y.
+/**
+ * A inner-class that contains all the parameters in order to draw a Function. In fact, we need the height, the 
+ * width and the resolution of our Window, where the function will be drawn and 
+ * we also need a range of values for x and y.
  * 
  */
 	class GUI_params{
